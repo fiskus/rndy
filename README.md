@@ -12,6 +12,6 @@ Final password will be set to clipboard.
 
 HTML form that pointed to getpw-cgi.py should contain
 
-+ <input id="username" type="text/>
-+ <input id="domain" type="text"/> or <select id="domain"></select>
-+ <input id="password" type="password" />
++ `<input id="username" type="text/>`
++ `<input id="domain" type="text"/>` or `<select id="domain"></select>`
++ `<input id="password" type="password" />`
