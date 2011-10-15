@@ -6,8 +6,8 @@ import getpass
 import getopt
 import pygtk
 import gtk
-import base64
-import hashlib
+
+import getpw
 
 def usage():
     print "define username, domain name and master-password"
@@ -31,20 +31,12 @@ def main(argv):
     masterPassword = getpass.getpass()
 
     if masterPassword and username and domain:
-        password = hashlib.sha1()
-        password.update(username)
-        password.update(domain)
-        password.update(masterPassword)
-        sha1hash = password.hexdigest()
-        encodedHash = base64.b64encode(sha1hash)
-        output = encodedHash[:20]
-
+        password = getpw.get(username, domain, masterPassword)
         clipboard = gtk.clipboard_get()
-        clipboard.set_text(output)
+        clipboard.set_text(password)
         clipboard.store() # don't get why this is not working
-
         raw_input("Press any key to continue…") # clipboard able to use when program is working
-        return output
+        return password
     else:
         usage()
         sys.exit()
