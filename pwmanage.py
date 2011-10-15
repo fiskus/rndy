@@ -44,6 +44,7 @@ def main(argv):
         clipboard.store() # don't get why this is not working
 
         raw_input("Press any key to continue…") # clipboard able to use when program is working
+        return output
     else:
         usage()
         sys.exit()
