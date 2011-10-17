@@ -4,7 +4,7 @@
 import sys
 import getpass
 import getopt
-if sys.platform == "linux":
+if sys.platform == "linux2":
     import pygtk
     import gtk
 
@@ -33,7 +33,7 @@ def main(argv):
 
     if masterPassword and username and domain:
         password = getpw.get(username, domain, masterPassword)
-        if sys.platform == "linux":
+        if sys.platform == "linux2":
             clipboard = gtk.clipboard_get()
             clipboard.set_text(password)
             clipboard.store() # don't get why this is not working
