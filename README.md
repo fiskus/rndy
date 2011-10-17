@@ -6,7 +6,7 @@
 
 Than master-password promted.
 
-Final password will be set to clipboard.
+Final password will be set to clipboard on Linux (depends on pygtk module) or print to console on MacOS.
 
 ## CGI version
 
