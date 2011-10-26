@@ -4,11 +4,20 @@
 import sys
 import getpass
 import getopt
+import hashlib
+import base64
 if sys.platform == "linux":
     import pygtk
     import gtk
 
-import getpw
+def pwget(username, domain, masterPassword):
+    password = hashlib.sha1()
+    password.update(username)
+    password.update(domain)
+    password.update(masterPassword)
+    sha1hash = password.hexdigest()
+    encodedHash = base64.b64encode(sha1hash)
+    return encodedHash[:20]
 
 def usage():
     print "define username, domain name and master-password"
@@ -32,7 +41,7 @@ def main(argv):
     masterPassword = getpass.getpass()
 
     if masterPassword and username and domain:
-        password = getpw.get(username, domain, masterPassword)
+        password = pwget(username, domain, masterPassword)
         if sys.platform == "linux":
             clipboard = gtk.clipboard_get()
             clipboard.set_text(password)
