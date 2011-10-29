@@ -37,7 +37,7 @@ def main(argv):
             clipboard = gtk.clipboard_get()
             clipboard.set_text(password)
             clipboard.store() # don't get why this is not working
-            raw_input("Press any key to continue…") # clipboard able to use when program is working
+            raw_input("Press `Enter` to continue…") # clipboard able to use when program is working
         elif sys.platform == "darwin":
             print password
         return password
