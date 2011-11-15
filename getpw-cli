@@ -3,12 +3,24 @@
 
 import sys
 import getpass
+import os
 import getopt
 import hashlib
 import base64
+import ConfigParser
 if sys.platform == "linux2":
     import pygtk
     import gtk
+
+loginPairs = {}
+def parseConfig():
+    config = ConfigParser.ConfigParser()
+    config.read(os.environ["HOME"] + "/.pwget.ini")
+
+    siteSection = "sites"
+    if config.has_section(siteSection):
+        for option in config.options(siteSection):
+            loginPairs[option] = config.get(siteSection, option)
 
 def pwget(username, domain, masterPassword):
     password = hashlib.sha1()
@@ -23,6 +35,8 @@ def usage():
     print "define username, domain name and master-password"
 
 def main(argv):
+    parseConfig()
+
     username = ""
     domain = ""
     try:
@@ -38,10 +52,12 @@ def main(argv):
             username = arg
         if opt in ("-d", "--domain"):
             domain = arg
-    if username and domain:
+    if domain:
         masterPassword = getpass.getpass()
 
-        if masterPassword and username and domain:
+        if masterPassword and domain:
+            if username == "":
+                username = loginPairs[domain]
             password = pwget(username, domain, masterPassword)
             if sys.platform == "linux2":
                 clipboard = gtk.clipboard_get()
