@@ -15,3 +15,7 @@ HTML form that pointed to getpw-cgi.py should contain
 + `<input id="username" type="text/>`
 + `<input id="domain" type="text"/>` or `<select id="domain"></select>`
 + `<input id="password" type="password" />`
+
+## TODO
+
+* config with predefined domains and usernames
