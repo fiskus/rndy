@@ -12,15 +12,8 @@ if sys.platform == "linux2":
     import pygtk
     import gtk
 
-loginPairs = {}
-def parseConfig():
-    config = ConfigParser.ConfigParser()
-    config.read(os.environ["HOME"] + "/.pwget.ini")
-
-    siteSection = "sites"
-    if config.has_section(siteSection):
-        for option in config.options(siteSection):
-            loginPairs[option] = config.get(siteSection, option)
+config = ConfigParser.ConfigParser()
+config.read(os.environ["HOME"] + "/.pwget.ini")
 
 def pwget(username, domain, masterPassword):
     password = hashlib.sha1()
@@ -35,8 +28,6 @@ def usage():
     print "define username, domain name and master-password"
 
 def main(argv):
-    parseConfig()
-
     username = ""
     domain = ""
     try:
@@ -53,23 +44,26 @@ def main(argv):
         if opt in ("-d", "--domain"):
             domain = arg
     if domain:
-        masterPassword = getpass.getpass()
-
-        if masterPassword and domain:
-            if username == "":
-                username = loginPairs[domain]
-            password = pwget(username, domain, masterPassword)
-            if sys.platform == "linux2":
-                clipboard = gtk.clipboard_get()
-                clipboard.set_text(password)
-                clipboard.store() # don't get why this is not working
-                raw_input("Press `Enter` to continue…") # clipboard able to use when program is working
-            elif sys.platform == "darwin":
-                print password
-            return password
+        if username == "":
+            if config.has_section("sites") and config.has_option("sites", domain):
+                username = config.get("sites", domain)
+        if username and domain:
+            masterPassword = getpass.getpass()
         else:
             usage()
             sys.exit()
+        password = pwget(username, domain, masterPassword)
+        if sys.platform == "linux2":
+            clipboard = gtk.clipboard_get()
+            clipboard.set_text(password)
+            clipboard.store() # don't get why this is not working
+            raw_input("Press `Enter` to continue…") # clipboard able to use when program is working
+        elif sys.platform == "darwin":
+            print password
+        return password
+    else:
+        usage()
+        sys.exit()
 
 if __name__ == "__main__":
     main(sys.argv[1:])
