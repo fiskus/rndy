@@ -38,21 +38,22 @@ def main(argv):
             username = arg
         if opt in ("-d", "--domain"):
             domain = arg
-    masterPassword = getpass.getpass()
+    if username and domain:
+        masterPassword = getpass.getpass()
 
-    if masterPassword and username and domain:
-        password = pwget(username, domain, masterPassword)
-        if sys.platform == "linux2":
-            clipboard = gtk.clipboard_get()
-            clipboard.set_text(password)
-            clipboard.store() # don't get why this is not working
-            raw_input("Press `Enter` to continue…") # clipboard able to use when program is working
-        elif sys.platform == "darwin":
-            print password
-        return password
-    else:
-        usage()
-        sys.exit()
+        if masterPassword and username and domain:
+            password = pwget(username, domain, masterPassword)
+            if sys.platform == "linux2":
+                clipboard = gtk.clipboard_get()
+                clipboard.set_text(password)
+                clipboard.store() # don't get why this is not working
+                raw_input("Press `Enter` to continue…") # clipboard able to use when program is working
+            elif sys.platform == "darwin":
+                print password
+            return password
+        else:
+            usage()
+            sys.exit()
 
 if __name__ == "__main__":
     main(sys.argv[1:])
