@@ -58,6 +58,20 @@ def generatePass(masterPassword, domain, username, rawOutput):
         usage()
         sys.exit()
 
+def proceedFurther(domain, username, rawOutput, genPairs):
+    if genPairs:
+        masterPassword = getpass.getpass()
+        writePairs(generatePairs(masterPassword))
+    else:
+        if domain and passwords.has_section("pairs") and passwords.has_option("pairs", domain):
+            print passwords.get("pairs", domain)
+        else:
+            masterPassword = getpass.getpass()
+            if rawOutput:
+                print generatePass(masterPassword, domain, username, rawOutput)
+            else:
+                generatePass(masterPassword, domain, username, rawOutput)
+
 def usage():
     print "define username, domain name and master-password"
 
@@ -84,14 +98,7 @@ def main(argv):
         if opt in ("--generate-pairs"):
             genPairs = 1
     if opts:
-        masterPassword = getpass.getpass()
-        if genPairs:
-            writePairs(generatePairs(masterPassword))
-        else:
-            if rawOutput:
-                print generatePass(masterPassword, domain, username, rawOutput)
-            else:
-                generatePass(masterPassword, domain, username, rawOutput)
+        proceedFurther(domain, username, rawOutput, genPairs)
     else:
         usage()
         sys.exit()
