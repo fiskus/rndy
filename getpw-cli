@@ -30,8 +30,9 @@ def usage():
 def main(argv):
     username = ""
     domain = ""
+    rawOutput = 0
     try:
-        opts, args = getopt.gnu_getopt(argv, "hu:d:", ["help", "username", "domain"])
+        opts, args = getopt.gnu_getopt(argv, "hu:d:", ["help", "username", "domain", "raw-output"])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -43,6 +44,8 @@ def main(argv):
             username = arg
         if opt in ("-d", "--domain"):
             domain = arg
+        if opt in ("--raw-output"):
+            rawOutput = 1
     if domain:
         if username == "":
             if config.has_section("sites") and config.has_option("sites", domain):
@@ -53,13 +56,13 @@ def main(argv):
             usage()
             sys.exit()
         password = pwget(username, domain, masterPassword)
-        if sys.platform == "linux2":
+        if rawOutput == 1:
+            print password
+        else:
             clipboard = gtk.clipboard_get()
             clipboard.set_text(password)
             clipboard.store() # don't get why this is not working
             raw_input("Press `Enter` to continue…") # clipboard able to use when program is working
-        elif sys.platform == "darwin":
-            print password
         return password
     else:
         usage()
