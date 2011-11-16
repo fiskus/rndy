@@ -56,7 +56,7 @@ def generatePass(masterPassword, domain, username):
         sys.exit()
 
 def outputPassword(password, rawOutput):
-    if rawOutput:
+    if rawOutput or config.has_section("main") and config.has_option("main", "rawOutput"):
         print password
     else:
         try:
