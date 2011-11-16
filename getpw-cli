@@ -13,7 +13,7 @@ if sys.platform == "linux2":
     import gtk
 
 config = ConfigParser.ConfigParser()
-config.read(os.environ["HOME"] + "/.pwget.ini")
+config.read(os.environ["HOME"] + "/.pwget/config.ini")
 
 def pwget(username, domain, masterPassword):
     password = hashlib.sha1()
