@@ -12,8 +12,14 @@ if sys.platform == "linux2":
     import pygtk
     import gtk
 
-config = ConfigParser.ConfigParser()
-config.read(os.environ["HOME"] + "/.pwget/config.ini")
+configPath = os.environ["HOME"] + "/.pwget/config.ini"
+pairsPath = os.environ["HOME"] + "/.pwget/pairs"
+if os.path.exists(configPath):
+    config = ConfigParser.ConfigParser()
+    config.read(configPath)
+if os.path.exists(pairsPath):
+    passwords = ConfigParser.ConfigParser()
+    passwords.read(pairsPath)
 
 def pwget(username, domain, masterPassword):
     password = hashlib.sha1()
@@ -24,6 +30,34 @@ def pwget(username, domain, masterPassword):
     encodedHash = base64.b64encode(sha1hash)
     return encodedHash[:20]
 
+def generatePairs(masterPassword):
+    if config.has_section("sites"):
+        output = ""
+        for option in config.options("sites"):
+            output += option + ": " + generatePass(masterPassword, option, config.get("sites", option), 1) + "\n"
+        return output
+
+def writePairs(pairs):
+    pairsFile = open(pairsPath, "w+")
+    pairsFile.write("[pairs]\n" + pairs)
+    pairsFile.close()
+
+def generatePass(masterPassword, domain, username, rawOutput):
+    if domain:
+        if username == "":
+            if config.has_section("sites") and config.has_option("sites", domain):
+                username = config.get("sites", domain)
+        password = pwget(username, domain, masterPassword)
+        if rawOutput == 0:
+            clipboard = gtk.clipboard_get()
+            clipboard.set_text(password)
+            clipboard.store() # don't get why this is not working
+            raw_input("Press `Enter` to continue…") # clipboard able to use when program is working
+        return password
+    else:
+        usage()
+        sys.exit()
+
 def usage():
     print "define username, domain name and master-password"
 
@@ -31,8 +65,9 @@ def main(argv):
     username = ""
     domain = ""
     rawOutput = 0
+    genPairs = 0
     try:
-        opts, args = getopt.gnu_getopt(argv, "hu:d:", ["help", "username", "domain", "raw-output"])
+        opts, args = getopt.gnu_getopt(argv, "hu:d:", ["help", "username", "domain", "raw-output", "generate-pairs"])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -46,24 +81,17 @@ def main(argv):
             domain = arg
         if opt in ("--raw-output"):
             rawOutput = 1
-    if domain:
-        if username == "":
-            if config.has_section("sites") and config.has_option("sites", domain):
-                username = config.get("sites", domain)
-        if username and domain:
-            masterPassword = getpass.getpass()
+        if opt in ("--generate-pairs"):
+            genPairs = 1
+    if opts:
+        masterPassword = getpass.getpass()
+        if genPairs:
+            writePairs(generatePairs(masterPassword))
         else:
-            usage()
-            sys.exit()
-        password = pwget(username, domain, masterPassword)
-        if rawOutput == 1:
-            print password
-        else:
-            clipboard = gtk.clipboard_get()
-            clipboard.set_text(password)
-            clipboard.store() # don't get why this is not working
-            raw_input("Press `Enter` to continue…") # clipboard able to use when program is working
-        return password
+            if rawOutput:
+                print generatePass(masterPassword, domain, username, rawOutput)
+            else:
+                generatePass(masterPassword, domain, username, rawOutput)
     else:
         usage()
         sys.exit()
