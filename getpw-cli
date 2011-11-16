@@ -34,7 +34,7 @@ def generatePairs(masterPassword):
     if config.has_section("sites"):
         output = ""
         for option in config.options("sites"):
-            output += option + ": " + generatePass(masterPassword, option, config.get("sites", option), 1) + "\n"
+            output += option + ": " + generatePass(masterPassword, option, config.get("sites", option)) + "\n"
         return output
 
 def writePairs(pairs):
@@ -42,35 +42,36 @@ def writePairs(pairs):
     pairsFile.write("[pairs]\n" + pairs)
     pairsFile.close()
 
-def generatePass(masterPassword, domain, username, rawOutput):
+def generatePass(masterPassword, domain, username):
     if domain:
         if username == "":
             if config.has_section("sites") and config.has_option("sites", domain):
                 username = config.get("sites", domain)
         password = pwget(username, domain, masterPassword)
-        if rawOutput == 0:
-            clipboard = gtk.clipboard_get()
-            clipboard.set_text(password)
-            clipboard.store() # don't get why this is not working
-            raw_input("Press `Enter` to continue…") # clipboard able to use when program is working
         return password
     else:
         usage()
         sys.exit()
+
+def outputPassword(password, rawOutput):
+    if rawOutput:
+        print password
+    else:
+        clipboard = gtk.clipboard_get()
+        clipboard.set_text(password)
+        clipboard.store() # don't get why this is not working
+        raw_input("Press `Enter` to continue…") # clipboard able to use when program is working
 
 def proceedFurther(domain, username, rawOutput, genPairs):
     if genPairs:
         masterPassword = getpass.getpass()
         writePairs(generatePairs(masterPassword))
     else:
-        if domain and passwords.has_section("pairs") and passwords.has_option("pairs", domain):
-            print passwords.get("pairs", domain)
+        if domain and os.path.exists(pairsPath) and passwords.has_section("pairs") and passwords.has_option("pairs", domain):
+            outputPassword(passwords.get("pairs", domain), rawOutput)
         else:
             masterPassword = getpass.getpass()
-            if rawOutput:
-                print generatePass(masterPassword, domain, username, rawOutput)
-            else:
-                generatePass(masterPassword, domain, username, rawOutput)
+            outputPassword(generatePass(masterPassword, domain, username), rawOutput)
 
 def usage():
     print "define username, domain name and master-password"
