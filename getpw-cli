@@ -11,6 +11,8 @@ import ConfigParser
 if sys.platform == "linux2":
     import pygtk
     import gtk
+if sys.platform == "darwin":
+    import subprocess
 
 configPath = os.environ["HOME"] + "/.pwget/config.ini"
 pairsPath = os.environ["HOME"] + "/.pwget/pairs"
@@ -57,10 +59,17 @@ def outputPassword(password, rawOutput):
     if rawOutput:
         print password
     else:
-        clipboard = gtk.clipboard_get()
-        clipboard.set_text(password)
-        clipboard.store() # don't get why this is not working
-        raw_input("Press `Enter` to continue…") # clipboard able to use when program is working
+        try:
+            clipboard = gtk.clipboard_get()
+            clipboard.set_text(password)
+            clipboard.store() # don't get why this is not working
+            raw_input("Press `Enter` to continue…") # clipboard able to use when program is working
+        except:
+            #subprocess.call(["echo", password, "|", "pbcopy"])
+            p1 = subprocess.Popen(["echo", password], stdout=subprocess.PIPE)
+            p2 = subprocess.Popen(["pbcopy"], stdin=p1.stdout, stdout=subprocess.PIPE)
+            p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
+            output = p2.communicate()[0]
 
 def proceedFurther(domain, username, rawOutput, genPairs):
     if genPairs:
