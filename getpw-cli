@@ -75,8 +75,9 @@ def outputPassword(password, outputType):
 
 def proceedFurther(domain, username, rawOutput, genPairs):
     if genPairs:
-        masterPassword = getpass.getpass()
-        writePairs(generatePairs(masterPassword))
+        if not os.path.exists(pairsPath):
+            masterPassword = getpass.getpass()
+            writePairs(generatePairs(masterPassword))
     else:
         if domain and os.path.exists(pairsPath) and passwords.has_section("pairs") and passwords.has_option("pairs", domain):
             outputPassword(passwords.get("pairs", domain), rawOutput)
