@@ -55,8 +55,8 @@ def generatePass(masterPassword, domain, username):
         usage()
         sys.exit()
 
-def outputPassword(password, rawOutput):
-    if rawOutput or config.has_section("main") and config.has_option("main", "rawOutput"):
+def outputPassword(password, outputType):
+    if outputType == "raw":
         print password
     else:
         try:
@@ -90,10 +90,12 @@ def usage():
 def main(argv):
     username = ""
     domain = ""
-    rawOutput = 0
+    outputType = ""
+    if config.has_section("main") and config.has_option("main", "rawOutput"):
+        outputType = "raw"
     genPairs = 0
     try:
-        opts, args = getopt.gnu_getopt(argv, "hu:d:", ["help", "username", "domain", "raw-output", "generate-pairs"])
+        opts, args = getopt.gnu_getopt(argv, "hu:d:", ["help", "username", "domain", "raw", "clipboard", "generate-pairs"])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -105,12 +107,14 @@ def main(argv):
             username = arg
         if opt in ("-d", "--domain"):
             domain = arg
-        if opt in ("--raw-output"):
-            rawOutput = 1
+        if opt in ("--raw"):
+            outputType = "raw"
+        if opt in ("--clipboard"):
+            outputType = "clipboard"
         if opt in ("--generate-pairs"):
             genPairs = 1
     if opts:
-        proceedFurther(domain, username, rawOutput, genPairs)
+        proceedFurther(domain, username, outputType, genPairs)
     else:
         usage()
         sys.exit()
