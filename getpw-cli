@@ -8,14 +8,14 @@ import getopt
 import hashlib
 import base64
 import ConfigParser
-if sys.platform == "linux2":
+try:
     import pygtk
     import gtk
 if sys.platform == "darwin":
     import subprocess
 
-configPath = os.environ["HOME"] + "/.pwget/config.ini"
-pairsPath = os.environ["HOME"] + "/.pwget/pairs"
+configPath = os.environ["HOME"] + "/.psw/config.ini"
+pairsPath = os.environ["HOME"] + "/.psw/pairs"
 if os.path.exists(configPath):
     config = ConfigParser.ConfigParser()
     config.read(configPath)
