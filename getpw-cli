@@ -16,14 +16,15 @@ except:
 if sys.platform == "darwin":
     import subprocess
 
-configPath = os.environ["HOME"] + "/.psw/config.ini"
-pairsPath = os.environ["HOME"] + "/.psw/pairs"
-if os.path.exists(configPath):
+PSW_PATH = os.environ["HOME"] + '/.psw/'
+CONFIG_PATH = PSW_PATH + 'config.ini'
+PAIRS_PATH = PSW_PATH + 'pairs'
+if os.path.exists(CONFIG_PATH):
     config = ConfigParser.ConfigParser()
-    config.read(configPath)
-if os.path.exists(pairsPath):
+    config.read(CONFIG_PATH)
+if os.path.exists(PAIRS_PATH):
     passwords = ConfigParser.ConfigParser()
-    passwords.read(pairsPath)
+    passwords.read(PAIRS_PATH)
 
 def pwget(username, domain, masterPassword):
     password = hashlib.sha1()
@@ -42,7 +43,7 @@ def generatePairs(masterPassword):
         return output
 
 def writePairs(pairs):
-    pairsFile = open(pairsPath, "w+")
+    pairsFile = open(PAIRS_PATH, "w+")
     pairsFile.write("[pairs]\n" + pairs)
     pairsFile.close()
 
@@ -77,11 +78,11 @@ def outputPassword(password, outputType):
 
 def proceedFurther(domain, username, rawOutput, genPairs):
     if genPairs:
-        if not os.path.exists(pairsPath):
+        if not os.path.exists(PAIRS_PATH):
             masterPassword = getpass.getpass()
             writePairs(generatePairs(masterPassword))
     else:
-        if domain and os.path.exists(pairsPath) and passwords.has_section("pairs") and passwords.has_option("pairs", domain):
+        if domain and os.path.exists(PAIRS_PATH) and passwords.has_section("pairs") and passwords.has_option("pairs", domain):
             outputPassword(passwords.get("pairs", domain), rawOutput)
         else:
             masterPassword = getpass.getpass()
