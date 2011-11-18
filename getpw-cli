@@ -8,11 +8,6 @@ import getopt
 import hashlib
 import base64
 import ConfigParser
-try:
-    import pygtk
-    import gtk
-except:
-    print "gtk not found"
 if sys.platform == "darwin":
     import subprocess
 
@@ -63,6 +58,8 @@ def outputPassword(password, outputType):
         print password
     else:
         try:
+            import pygtk
+            import gtk
             clipboard = gtk.clipboard_get()
             clipboard.set_text(password)
             clipboard.store() # don't get why this is not working
