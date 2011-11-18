@@ -99,7 +99,7 @@ def main(argv):
         outputType = "raw"
     genPairs = 0
     try:
-        opts, args = getopt.gnu_getopt(argv, "hu:d:", ["help", "username", "domain", "raw", "clipboard", "generate-pairs"])
+        opts, args = getopt.gnu_getopt(argv, "hu:d:obg", ["help", "username", "domain", "raw", "clipboard", "generate-pairs"])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -111,11 +111,11 @@ def main(argv):
             username = arg
         if opt in ("-d", "--domain"):
             domain = arg
-        if opt in ("--raw"):
+        if opt in ("-o", "--raw-output"):
             outputType = "raw"
-        if opt in ("--clipboard"):
+        if opt in ("-b", "--clipboard"):
             outputType = "clipboard"
-        if opt in ("--generate-pairs"):
+        if opt in ("-g", "--generate-pairs"):
             genPairs = 1
     if opts:
         proceedFurther(domain, username, outputType, genPairs)
