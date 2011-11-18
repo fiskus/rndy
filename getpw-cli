@@ -11,6 +11,8 @@ import ConfigParser
 try:
     import pygtk
     import gtk
+except:
+    print "gtk not found"
 if sys.platform == "darwin":
     import subprocess
 
