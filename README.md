@@ -24,3 +24,6 @@ HTML form that pointed to getpw-cgi.py should contain
 + `<input id="domain" type="text"/>` or `<select id="domain"></select>`
 + `<input id="password" type="password" />`
 
+## TODO
+* optimize cli arguments
+* ajax call from server and bookmarklet (alias in pentadactyl)
