@@ -18,7 +18,7 @@ Final password will be set to clipboard (depends on pygtk module on Linux and on
 
 ### Config
 
-Put this to ~/.pwget.ini:
+Put this to `~/.pwget.ini`:
 	[sites]
 	domain1: login1
 	domain2: login2
@@ -27,7 +27,7 @@ and you have not type username each time
 
 ## CGI version
 
-HTML form that pointed to getpw-cgi.py should contain
+HTML form that pointed to `getpw-cgi.py` should contain
 
 + `<input id="username" type="text/>`
 + `<input id="domain" type="text"/>` or `<select id="domain"></select>`
@@ -41,7 +41,7 @@ Dependencies: zsh, python, Firefox with Pentadactyl or Vimperator
 
 It necesary to omit password prompt each time you call this script.
 
-Put this to .zlogin:
+Put this to `~/.zlogin`:
 
 	if [ ! -e $HOME/.psw/pairs ];
 	then
@@ -49,7 +49,7 @@ Put this to .zlogin:
 		psw -g
 	fi
 
-and this to .zlogout:
+and this to `~/.zlogout`:
 
 	if [ `ps ax | grep -v grep | grep zsh | wc -l` -eq 1 ];
 	then
@@ -80,12 +80,12 @@ and so on.
 
 ### Get passwords in browser
 
-Add following to your ~/.pentadacylrc
+Add following to your `~/.pentadacylrc`:
 
-command -nargs=1 -description='generate password for site' -complete custom,'[
-	\["livejournal.com"],
-	\["twitter.com"],
-	\["github.com"]
-	\psw ! psw -d <args>
+	command -nargs=1 -description='generate password for site' -complete custom,'[
+		\["livejournal.com"],
+		\["twitter.com"],
+		\["github.com"]
+		\psw ! psw -d <args>
 
 execute `:source .pentadactylrc` to load updated config, type command `:psw` and press `Space`. You will see completion list with your sites where you need passwords. Passwords should be previously generated in pairs.
