@@ -55,7 +55,7 @@ def generatePass(masterPassword, domain, username):
 
 def outputPassword(password, outputType):
     if outputType == "raw":
-        print(password)
+        print(password.decode("utf8"))
     else:
         try:
             import pygtk
