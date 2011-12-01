@@ -7,7 +7,7 @@ import os
 import getopt
 import hashlib
 import base64
-import ConfigParser
+import configparser
 if sys.platform == "darwin":
     import subprocess
 
@@ -15,19 +15,19 @@ PSW_PATH = os.environ["HOME"] + '/.psw/'
 CONFIG_PATH = PSW_PATH + 'config.ini'
 PAIRS_PATH = PSW_PATH + 'pairs'
 if os.path.exists(CONFIG_PATH):
-    config = ConfigParser.ConfigParser()
+    config = configparser.ConfigParser()
     config.read(CONFIG_PATH)
 if os.path.exists(PAIRS_PATH):
-    passwords = ConfigParser.ConfigParser()
+    passwords = configparser.ConfigParser()
     passwords.read(PAIRS_PATH)
 
 def pwget(username, domain, masterPassword):
     password = hashlib.sha1()
-    password.update(username)
-    password.update(domain)
-    password.update(masterPassword)
+    password.update(username.encode("utf8"))
+    password.update(domain.encode("utf8"))
+    password.update(masterPassword.encode("utf8"))
     sha1hash = password.hexdigest()
-    encodedHash = base64.b64encode(sha1hash)
+    encodedHash = base64.b64encode(sha1hash.encode("utf8"))
     return encodedHash[:20]
 
 def generatePairs(masterPassword):
@@ -55,7 +55,7 @@ def generatePass(masterPassword, domain, username):
 
 def outputPassword(password, outputType):
     if outputType == "raw":
-        print password
+        print(password)
     else:
         try:
             import pygtk
@@ -71,7 +71,7 @@ def outputPassword(password, outputType):
                 p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
                 output = p2.communicate()[0]
             except:
-                print "You should use '--generate-pairs' key"
+                print("You should use '--generate-pairs' key")
 
 def proceedFurther(domain, username, rawOutput, genPairs):
     if genPairs:
@@ -79,7 +79,7 @@ def proceedFurther(domain, username, rawOutput, genPairs):
         if masterPassword:
             writePairs(generatePairs(masterPassword))
         else:
-            print "Pairs not generated"
+            print("Pairs not generated")
             sys.exit()
     else:
         if domain and os.path.exists(PAIRS_PATH) and passwords.has_section("pairs") and passwords.has_option("pairs", domain):
@@ -89,7 +89,7 @@ def proceedFurther(domain, username, rawOutput, genPairs):
             outputPassword(generatePass(masterPassword, domain, username), rawOutput)
 
 def usage():
-    print "define username, domain name and master-password"
+    print("define username, domain name and master-password")
 
 def main(argv):
     username = ""
