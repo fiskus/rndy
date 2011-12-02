@@ -34,7 +34,7 @@ def generatePairs(masterPassword):
     if config.has_section("sites"):
         output = ""
         for option in config.options("sites"):
-            output += option + ": " + generatePass(masterPassword, option, config.get("sites", option)) + "\n"
+            output += option + ": " + generatePass(masterPassword.encode("utf8"), option.encode("utf8"), config.get("sites", option).encode("utf8")).decode("utf8") + "\n"
         return output
 
 def writePairs(pairs):
@@ -47,7 +47,7 @@ def generatePass(masterPassword, domain, username):
         if username == "":
             if config.has_section("sites") and config.has_option("sites", domain):
                 username = config.get("sites", domain)
-        password = pwget(username, domain, masterPassword)
+        password = pwget(username.decode("utf8"), domain.decode("utf8"), masterPassword.decode("utf8"))
         return password
     else:
         usage()
