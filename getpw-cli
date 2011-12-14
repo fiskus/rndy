@@ -40,7 +40,7 @@ def generatePairs(masterPassword):
             output += generatePass(masterPassword.encode("utf8"),
                                    option.encode("utf8"),
                                    config.get("sites", option).encode("utf8")
-                                  ).decode("utf8")
+                                  ).decode("utf8") + "\n"
         return output
 
 
