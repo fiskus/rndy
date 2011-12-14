@@ -107,7 +107,10 @@ def proceedFurther(domain, username, rawOutput, genPairs):
             outputPassword(passwords.get("pairs", domain), rawOutput)
         else:
             masterPassword = getpass.getpass()
-            outputPassword(generatePass(masterPassword.encode("utf-8"), domain.encode("utf-8"), username.encode("utf-8")),
+            outputPassword(generatePass(masterPassword.encode("utf-8"),
+                                        domain.encode("utf-8"),
+                                        username.encode("utf-8")
+                                       ),
                            rawOutput)
 
 
