@@ -18,7 +18,7 @@ if os.path.exists(CONFIG_PATH):
     config = configparser.ConfigParser()
     config.read(CONFIG_PATH)
 if os.path.exists(PAIRS_PATH):
-    passwords = ConfigParser.ConfigParser()
+    passwords = configparser.ConfigParser()
     passwords.read(PAIRS_PATH)
 
 
@@ -65,33 +65,12 @@ def generatePass(masterPassword, domain, username):
         sys.exit()
 
 
-def outputPassword(password, outputType):
-    if outputType == "raw":
-        #print(password.decode("utf8"))
-        print(password)
-    else:
-        try:
-            import pygtk
-            import gtk
-            clipboard = gtk.clipboard_get()
-            clipboard.set_text(password)
-            clipboard.store()  # don't get why this is not working
-            # clipboard able to use when program is working
-            raw_input("Press `Enter` to continue…")
-        except:
-            try:
-                p1 = subprocess.Popen(["echo", password],
-                                      stdout=subprocess.PIPE)
-                p2 = subprocess.Popen(["pbcopy"],
-                                      stdin=p1.stdout,
-                                      stdout=subprocess.PIPE)
-                p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
-                output = p2.communicate()[0]
-            except:
-                print("You should use '--generate-pairs' key")
+def outputPassword(password):
+	#print(password.decode("utf8"))
+	print(password)
 
 
-def proceedFurther(domain, username, rawOutput, genPairs):
+def proceedFurther(domain, username, genPairs):
     if genPairs:
         masterPassword = getpass.getpass()
         if masterPassword:
@@ -104,14 +83,13 @@ def proceedFurther(domain, username, rawOutput, genPairs):
            os.path.exists(PAIRS_PATH) and \
            passwords.has_section("pairs") and \
            passwords.has_option("pairs", domain):
-            outputPassword(passwords.get("pairs", domain), rawOutput)
+            outputPassword(passwords.get("pairs", domain))
         else:
             masterPassword = getpass.getpass()
             outputPassword(generatePass(masterPassword.encode("utf-8"),
                                         domain.encode("utf-8"),
                                         username.encode("utf-8")
-                                       ),
-                           rawOutput)
+                                       ))
 
 
 def usage():
@@ -121,9 +99,6 @@ def usage():
 def main(argv):
     username = ""
     domain = ""
-    outputType = ""
-    if config.has_section("main") and config.has_option("main", "rawOutput"):
-        outputType = "raw"
     genPairs = 0
     try:
         opts, args = getopt.gnu_getopt(argv,
@@ -146,14 +121,10 @@ def main(argv):
             username = arg
         if opt in ("-d", "--domain"):
             domain = arg
-        if opt in ("-o", "--raw-output"):
-            outputType = "raw"
-        if opt in ("-b", "--clipboard"):
-            outputType = "clipboard"
         if opt in ("-g", "--generate-pairs"):
             genPairs = 1
     if opts:
-        proceedFurther(domain, username, outputType, genPairs)
+        proceedFurther(domain, username, genPairs)
     else:
         usage()
         sys.exit()
