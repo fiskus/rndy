@@ -7,7 +7,7 @@ import os
 import getopt
 import hashlib
 import base64
-import ConfigParser
+import configparser
 if sys.platform == "darwin":
     import subprocess
 
@@ -15,7 +15,7 @@ PSW_PATH = os.environ["HOME"] + '/.psw/'
 CONFIG_PATH = PSW_PATH + 'config.ini'
 PAIRS_PATH = PSW_PATH + 'pairs'
 if os.path.exists(CONFIG_PATH):
-    config = ConfigParser.ConfigParser()
+    config = configparser.ConfigParser()
     config.read(CONFIG_PATH)
 if os.path.exists(PAIRS_PATH):
     passwords = ConfigParser.ConfigParser()
