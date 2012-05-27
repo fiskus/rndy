@@ -2,14 +2,44 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+	<title>Get password</title>
+	<style type="text/css">
+		BODY {
+			text-align: center;
+		}
+	</style>
 </head>
 <body>
-	<form action="/getpw-cgi.py">
-		<input id="username" name="username" type="text" />
-		<input id="domain" name="domain" type="text" />
-		<input id="password" name="password" type="password" />
-		<input type="submit" value="Get password!" />
+	<form action="/getpw-cgi.py" type="post">
+		<p>
+			<input
+				id="username"
+				name="username"
+				type="text"
+				placeholder="Username"
+				required />
+		</p>
+		<p>
+			<input
+				id="domain"
+				name="domain"
+				type="text"
+				placeholder="Domain"
+				required />
+		</p>
+		<p>
+			<input
+				id="password"
+				name="password"
+				type="password"
+				placeholder="Master-password"
+				required />
+		</p>
+		<p>
+			<input
+				type="submit"
+				value="Get password!" />
+		</p>
 	</form>
 </body>
 </html>
