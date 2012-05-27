@@ -26,7 +26,6 @@ password = pwget(username, domain, masterPassword)
 print("<!DOCTYPE>")
 print("<html lang=\"en\">")
 print("<meta charset=\"UTF-8\">")
-print("<meta http-equiv=\"refresh\" content=\"15; url=/\">")
 print("<meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\">")
 print("<style> \
 	P {text-align: center;} .domain {margin-top: 100px; color: #CCC;} \
