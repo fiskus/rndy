@@ -18,7 +18,7 @@
 	</style>
 </head>
 <body>
-	<form action="/getpw-cgi.py" type="POST">
+	<form action="/getpw-cgi.py" method="POST">
 		<p>
 			<input
 				id="username"
@@ -44,7 +44,7 @@
 				required />
 		</p>
 		<p>
-            <label for="count">password's size</label>
+			<label for="count">password's size</label>
 			<select id="count" name="count">
 				<option value="1">1</option>
 				<option value="2">2</option>

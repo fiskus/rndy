@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import cgi
-from subprocess import call
+import subprocess
 
 form = cgi.FieldStorage()
 
@@ -12,7 +12,7 @@ domain = form.getvalue("domain")
 username = form.getvalue("username")
 count = form.getvalue("count")
 
-password = call(username, domain, masterPassword)
+password = subprocess.check_output(['./psw.sh', '-u', username, '-d', domain, '-p', masterPassword])
 
 print("<!DOCTYPE>")
 print("<html lang=\"en\">")
@@ -26,6 +26,6 @@ print("<style> \
 	</style>")
 print("<body>")
 print("<p class=domain>" + domain + "</p>")
-print("<p class=hash><input value=" + password + " autofocus/></p>")
+print("<p class=hash><input value=" + password.decode('ascii') + " autofocus/></p>")
 print("</body>")
 print("</html>")

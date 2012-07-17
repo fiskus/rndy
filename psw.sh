@@ -39,6 +39,6 @@ fi
 
 PASSWORD=`echo -n $USERNAME$DOMAIN$MASTERPASSWORD | sha1sum | base64 | cut -c 1-$COUNT`
 
-echo -n $PASSWORD | xclip
+#echo -n $PASSWORD | xclip
 
 echo $PASSWORD
