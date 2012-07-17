@@ -2,65 +2,15 @@
 
 ## TUI version
 
-	$ ./getpw-cli -d <domain name> -u <username>
+	$ ./psw.sh -d <domain name> -u <username>
 
 Than master-password promted.
 
-Final password will be set to clipboard (depends on pygtk module on Linux and on pbcopy on MacOS) or print to console on MacOS.
-
-### Command line arguments
-
-`-g`, `--generate-passwords` -- generate password pairs and write it to ~/.psw/pairs
-
-`-b`, `--clipboard` -- ignore config option and output password to system clipboard if can
-
-`-o`, `--raw-output` -- ignore config option and output password to terminal window
-
-### Config
-
-Put this to `~/.pwget.ini`:
-	[sites]
-	domain1: login1
-	domain2: login2
-
-and you have not type username each time
-
-## CGI version
-
-HTML form that pointed to `getpw-cgi.py` should contain
-
-+ `<input id="username" type="text/>`
-+ `<input id="domain" type="text"/>` or `<select id="domain"></select>`
-+ `<input id="password" type="password" />`
+Final password will be set to clipboard (if xclip installed)
 
 ## HOW-TO use it with fun
 
-Dependencies: zsh, python, Firefox with Pentadactyl or Vimperator
-
-### Autogenerating of passwords' pairs
-
-It necesary to omit password prompt each time you call this script.
-
-Put this to `~/.zlogin`:
-
-	if [ ! -e $HOME/.psw/pairs ];
-	then
-		echo "Genetates password pairs for sites. Type your master-password."
-		psw -g
-	fi
-
-and this to `~/.zlogout`:
-
-	if [ `ps ax | grep -v grep | grep zsh | wc -l` -eq 1 ];
-	then
-		rm $HOME/.psw/pairs
-	fi
-
-Each time you start zsh, it will check if passwords' pairs exist, and if not -- will create.
-
-Each time you close zsh, it will check any zsh execute, and if not -- will remove passwords pairs.
-
-Bash has such files but with another names.
+Dependencies: zsh, Firefox with Pentadactyl or Vimperator
 
 ### Alias
 
