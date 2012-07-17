@@ -3,13 +3,19 @@
 # Use power of GNU/Linux:
 #  echo -n '$USERNAME$DOMAIN$MASTERPASWWORD' | shasum | base64 | cut -c 1-20
 
-while getopts ":d:u:" opt; do
+USERNAME=fiskus
+COUNT=20
+
+while getopts ":d:u:c:" opt; do
     case $opt in
         d)
             DOMAIN=$OPTARG
             ;;
         u)
             USERNAME=$OPTARG
+            ;;
+        c)
+            COUNT=$OPTARG
             ;;
         \?)
             echo "Usage:"
@@ -18,6 +24,8 @@ while getopts ":d:u:" opt; do
     esac
 done
 
-read -s MASTERPASWWORD
+echo -n 'Type master-password: '
+read -s MASTERPASSWORD
 
-echo -n $USERNAME$DOMAIN$MASTERPASWWORD | sha1sum | base64 | cut -c 1-20
+echo $COUNT
+echo -n $USERNAME$DOMAIN$MASTERPASSWORD | sha1sum | base64 | cut -c 1-$COUNT
