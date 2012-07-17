@@ -2,26 +2,17 @@
 # -*- coding: UTF-8 -*-
 
 import cgi
-import hashlib
-import base64
+from subprocess import call
 
 form = cgi.FieldStorage()
-
-def pwget(username, domain, masterPassword):
-    password = hashlib.sha1()
-    password.update(username.encode('utf8'))
-    password.update(domain.encode('utf8'))
-    password.update(masterPassword.encode('utf8'))
-    sha1hash = password.hexdigest()
-    encodedHash = base64.b64encode(sha1hash.encode('utf8'))
-    return encodedHash[:20].decode('utf8')
 
 print("Content-type: text/html\n\n")
 masterPassword = form.getvalue("password")
 domain = form.getvalue("domain")
 username = form.getvalue("username")
+count = form.getvalue("count")
 
-password = pwget(username, domain, masterPassword)
+password = call(username, domain, masterPassword)
 
 print("<!DOCTYPE>")
 print("<html lang=\"en\">")
