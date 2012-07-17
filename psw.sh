@@ -16,20 +16,24 @@ while getopts ":d:u:c:" opt; do
             ;;
         \?)
             echo "Usage:"
-            echo "psw -d google.com -u sergey"
+            echo "psw -d google.com -u sergey -c 20"
             ;;
     esac
 done
 
-echo -n 'Type master-password: '
 
-if [ ! -a $HOME/.masterpassword ]; then
+if [[ ! -a $HOME/.masterpassword ]]; then
+    echo -n 'Type master-password: '
     read -s MASTERPASSWORD
     echo -n $MASTERPASSWORD > $HOME/.masterpassword
+    echo '' #new line for spliting prompt and password
 else
     MASTERPASSWORD=`cat $HOME/.masterpassword`
     chmod 0700 $HOME/.masterpassword
 fi
 
-echo $COUNT
-echo -n $USERNAME$DOMAIN$MASTERPASSWORD | sha1sum | base64 | cut -c 1-$COUNT
+PASSWORD=`echo -n $USERNAME$DOMAIN$MASTERPASSWORD | sha1sum | base64 | cut -c 1-$COUNT`
+
+echo -n $PASSWORD | xclip
+
+echo $PASSWORD
