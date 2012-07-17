@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Use power of GNU/Linux:
-#  echo -n '$USERNAME$DOMAIN$MASTERPASWWORD' | shasum | base64 | cut -c 1-20
-
 USERNAME=fiskus
 COUNT=20
 
