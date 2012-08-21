@@ -4,21 +4,10 @@
 	<meta charset="UTF-8">
 	<title>Get password</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<style>
-		BODY {
-			text-align: center;
-		}
-
-		INPUT,
-		SELECT {
-			font-size: 2em;
-			line-height: 3em;
-		}
-	</style>
+    <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-	<form action="/getpw-cgi.py" type="POST">
+	<form action="/getpw-cgi.py" method="post">
 		<p>
 			<input
 				id="username"

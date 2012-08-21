@@ -1,0 +1,36 @@
+BODY {
+    text-align: center;
+}
+
+INPUT,
+SELECT {
+    font-size: 2em;
+    line-height: 3em;
+}
+
+P {
+    text-align: center;
+}
+
+.domain {
+    margin-top: 100px;
+    color: #CCC;
+}
+
+.hash INPUT {
+    font-size: 3em;
+    color: #EFEFEF;
+    border: 0;
+    text-align: center;
+}
+
+::-moz-selection {
+    background:#EFEFEF;
+    color:#FFF;
+}
+
+::selection {
+    background:#EFEFEF;
+    color:#FFF;
+}
+
