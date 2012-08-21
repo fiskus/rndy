@@ -46,6 +46,12 @@ if [[ ! $MASTERPASSWORD ]]; then
 fi
 
 PASSWORD=`echo -n $USERNAME$DOMAIN$MASTERPASSWORD | sha1sum | base64 | cut -c 1-$COUNT`
+ISTHEREDIGITS=`echo -n $PASSWORD | grep -P '\d'`
+
+if [[ ! $ISTHEREDIGITS ]]; then
+    #replace first symbol with count nubmer
+    PASSWORD=`echo $PASSWORD | sed 's/^./'$COUNT'/'`
+fi
 
 if [[ $OUTPUT ]]; then
     echo $PASSWORD

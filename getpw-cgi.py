@@ -13,7 +13,7 @@ domain = form.getvalue('domain')
 username = form.getvalue('username')
 count = form.getvalue('count')
 
-password = subprocess.check_output(['./psw.sh', '-u', username, '-d', domain, '-p', masterPassword, '-c', count])
+password = subprocess.check_output(['./psw.sh', '-u', username, '-d', domain, '-p', masterPassword, '-c', count, '-o'])
 
 print("<!DOCTYPE>")
 print("<html lang=\"en\">")
