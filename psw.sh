@@ -45,6 +45,11 @@ if [[ ! $MASTERPASSWORD ]]; then
     fi
 fi
 
+if [[ $MASTERPASSWORD == "" ]]; then
+    echo 'Empty master password. Re-enter.'
+    rm $HOME/.masterpassword
+fi
+
 PASSWORD=`echo -n $USERNAME$DOMAIN$MASTERPASSWORD | sha1sum | base64 | cut -c 1-$COUNT`
 
 ISTHEREDIGITS=`echo -n $PASSWORD | grep -P '\d'`
