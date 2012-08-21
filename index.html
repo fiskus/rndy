@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Get password</title>
+	<title>Паролилка</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+    <div class="output">
+
+    </div>
 	<form action="/getpw-cgi.py" method="post">
 		<p>
 			<input
@@ -57,11 +60,15 @@
 				<option value="20" selected>20</option>
 			</select>
 		</p>
+            <label for="ajax">Без перезагрузки страницы</label>
+            <input id="ajax" name="ajax" type="checkbox" checked />
+		</p>
 		<p>
 			<input
 				type="submit"
 				value="Get password!" />
 		</p>
 	</form>
+    <script src="/script.js" type="text/javascript"></script>
 </body>
 </html>

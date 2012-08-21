@@ -17,6 +17,7 @@ P {
     color: #CCC;
 }
 
+.output,
 .hash INPUT {
     font-size: 3em;
     color: #EFEFEF;
