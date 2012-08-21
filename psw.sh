@@ -28,6 +28,13 @@ while getopts ":d:u:c:p:o" opt; do
         \?)
             echo "Usage:"
             echo "psw -d google.com -u sergey.brin -c 20"
+            echo ""
+            echo "Arguments"
+            echo "-d\t\t\tdomain"
+            echo "-u\t\t\tusername"
+            echo "-c\t\t\tsymbols count"
+            echo "-p\t\t\tmaster password"
+            echo "-o\t\t\toutput to console, not to clipboard"
             ;;
     esac
 done
