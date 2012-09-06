@@ -3,6 +3,19 @@
 USERNAME=fiskus
 COUNT=20
 
+HELP=$(cat << 'EOF'
+    Usage:
+    psw -d google.com -u sergey.brin -c 20
+
+    Options:
+        -d  domain
+        -u  username
+        -c  count of symbols
+        -o  output to console instead of clipboard
+        -h  print this page
+EOF
+)
+
 while getopts ":d:u:c:p:o" opt; do
     case $opt in
         #set domain name
@@ -26,12 +39,16 @@ while getopts ":d:u:c:p:o" opt; do
             OUTPUT='RAW'
             ;;
         \?)
-            echo "Usage:"
-            echo "psw -d google.com -u sergey.brin -c 20"
+            echo "$HELP"
+            exit 0
             ;;
     esac
 done
 
+if [[ $DOMAIN == "" ]]; then
+    echo "$HELP"
+    exit 1
+fi
 
 if [[ ! $MASTERPASSWORD ]]; then
     if [[ ! -a $HOME/.masterpassword ]]; then
