@@ -12,6 +12,7 @@ HELP=$(cat << 'EOF'
         -u  username
         -c  count of symbols
         -o  output to console instead of clipboard
+        -p  master password
         -h  print this page
 EOF
 )

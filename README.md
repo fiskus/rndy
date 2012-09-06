@@ -2,9 +2,11 @@
 
 ## TUI version
 
-	$ ./psw.sh -d <domain name> -u <username>
+	$ ./psw.sh -d <domain name> [-u <username>] [-c <count>] [-p password] [-o]
 
 Than master-password promted.
+
+Default username is fiskus, default symbol's count is 20.
 
 Final password will be set to clipboard (if xclip installed)
 
@@ -17,7 +19,7 @@ Dependencies: zsh, Firefox with Pentadactyl or Vimperator
 Make symbolic link for this script and add to $PATH
 
 	$ mkdir bin
-	$ ln reps/password-manager/pwget-cli bin/psw
+	$ ln reps/password-manager/psw.sh bin/psw
 	$ echo 'export PATH=$PATH:$HOME/bin/' >> ~/.zshrc
 
 Add aliases for your domain from .config.ini:
@@ -39,3 +41,9 @@ Add following to your `~/.pentadacylrc`:
 		\psw ! psw -d <args>
 
 execute `:source .pentadactylrc` to load updated config, type command `:psw` and press `Space`. You will see completion list with your sites where you need passwords. Passwords should be previously generated in pairs.
+
+# How it works
+
+First, calculates hash from password and salt (username and domain). Then encodes to base64 and cut to defined symbols' count.
+
+If resulted number of symbols hasn't digit, than first letter replaced by symbols' count.
