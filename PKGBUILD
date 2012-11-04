@@ -1,7 +1,7 @@
 # Maintainer: Maxim Chervonny <fiskus@chervonny.ru>
 
 pkgname=psw-git
-pkgver=20120823
+pkgver=20121105
 pkgrel=1
 pkgdesc="Utility for managing passwords"
 arch=('any')
