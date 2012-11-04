@@ -12,7 +12,7 @@ provides=('psw')
 conflicts=('psw')
 
 _gitroot="git://github.com/fiskus/password-manager.git"
-_gitname="psw"
+_gitname="password-manager"
 
 build() {
   cd "$srcdir"
