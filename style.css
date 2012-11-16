@@ -8,6 +8,14 @@ SELECT {
     line-height: 3em;
 }
 
+@media (max-device-width:1024px) {
+    INPUT,
+    SELECT {
+        font-size: 1.8em;
+        line-height: 1.2em;
+    }
+}
+
 P {
     text-align: center;
 }
