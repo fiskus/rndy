@@ -1,43 +1,67 @@
-function $(selector) {
-    return document.querySelectorAll(selector);
-}
+//TODO:
+//  + add url attribute for mobile
+//  + add validation
 
-function pastePassword(text) {
-    var output = $('.output')[0];
-    output.innerHTML = text;
-}
+PSW = function() {};
 
-function getPassword(event) {
-    if (!$('#ajax')[0].checked) {
-        return false;
-    }
-
-    event.preventDefault();
-
-    var data = new FormData();
-    var request = new XMLHttpRequest();
-
-    var form = $('form')[0];
-    var url = form.action;
-
-    data.append('username', $('#username')[0].value);
-    data.append('domain', $('#domain')[0].value);
-    data.append('password', $('#password')[0].value);
-    data.append('count', $('#count')[0].value);
-    data.append('ajax', 'yes');
-
-    request.open('POST', url, false);
-    request.send(data);
-     
-    if (request.status === 200) {
-      pastePassword(request.responseText);
+PSW.prototype.settings = {
+    selectors: {
+        form: 'form',
+        ajax: '#ajax',
+        output: '.output'
     }
 }
 
-function init() {
-    var form = $('form')[0];
-
-    form.addEventListener('submit', getPassword, false);
+PSW.prototype.pastePassword = function(text) {
+    $(this.settings.selectors.output).html(text);
 }
 
-init();
+PSW.prototype._onSubmit = function(event) {
+    if (this.isAjax()) {
+        event.preventDefault();
+        this.serialize();
+        this.requestPassword();
+    } else {
+        return;
+    }
+}
+
+PSW.prototype.isAjax = function() {
+    return $(this.settings.selectors.ajax).prop('checked');
+}
+
+PSW.prototype.serialize = function() {
+    this.data = this.form.serialize();
+}
+
+PSW.prototype.requestPassword = function() {
+    var url = this.form.attr('action');
+
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: this.data,
+        context: this,
+        success: this._onSuccess,
+        error: this._onError,
+        dataType: 'text'
+    });
+}
+
+PSW.prototype._onSuccess = function(data) {
+    this.pastePassword(data);
+}
+
+PSW.prototype._onError = function(data) {
+    this.pastePassword('ERROR: ' + data);
+}
+
+//PSW.prototype.isPaswordStored = function() {
+//}
+
+PSW.prototype.init = function() {
+    this.form = $(this.settings.selectors.form);
+    this.form.on('submit', $.proxy(this._onSubmit, this));
+
+    //this.isPaswordStored();
+}

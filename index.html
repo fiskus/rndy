@@ -10,7 +10,7 @@
     <div class="output">
 
     </div>
-	<form action="/getpw-cgi.py" method="post">
+	<form action="/psw-cgi.py" method="post">
 		<p>
 			<input
 				id="username"
@@ -23,7 +23,6 @@
 			<input
 				id="domain"
 				name="domain"
-				type="url"
 				placeholder="Domain"
 				required />
 		</p>
@@ -71,5 +70,9 @@
 	</form>
     <script src="js/jquery.js"></script>
     <script src="js/script.js"></script>
+    <script>
+    var psw = new PSW();
+    psw.init();
+    </script>
 </body>
 </html>
