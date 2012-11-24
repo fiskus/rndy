@@ -7,68 +7,77 @@
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-    <div class="output">
-
-    </div>
+    <div class="output"></div>
 	<form action="/psw-cgi.py" method="post">
-		<p>
-			<input
-				id="username"
-				name="username"
-				type="text"
-				placeholder="Username"
-				required />
-		</p>
-		<p>
-			<input
-				id="domain"
-				name="domain"
-				placeholder="Domain"
-				required />
-		</p>
-		<p>
-			<input
-				id="password"
-				name="password"
-				type="password"
-				placeholder="Master-password"
-				required />
-		</p>
-		<p>
-            <label for="count">
-                password's size
-                <select id="count" name="count">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8" selected>8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-            </select>
-        </label>
-		</p>
-            <label for="ajax">
-                <input id="ajax" name="ajax" type="checkbox" checked />
-                без перезагрузки страницы
+        <fieldset class="inputs">
+            <p class="input-wrapper username-wrapper">
+                <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    placeholder="Username"
+                    tabindex="1"
+                    required />
+            </p>
+            <p class="input-wrapper domain-wrapper">
+                <input
+                    id="domain"
+                    name="domain"
+                    type="text"
+                    placeholder="Domain"
+                    tabindex="2"
+                    required />
+            </p>
+            <p class="input-wrapper password-wrapper">
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Master-password"
+                    tabindex="3"
+                    required />
+                <span class="password-reset">Re-enter password</span>
+            </p>
+        </fieldset>
+        <fieldset class="checkboxes">
+            <p class="count-wrapper">
+                <label for="count">
+                    length
+                    <select id="count" name="count" tabindex="4">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8" selected>8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                </select>
             </label>
-		</p>
+            </p>
+            <p class="ajax-wrapper">
+                <label for="ajax">
+                    <input id="ajax" name="ajax" type="checkbox" checked />
+                    without page reload
+                </label>
+            </p>
+        </fieldset>
 		<p>
 			<input
 				type="submit"
+                tabindex="5"
 				value="Get password!" />
 		</p>
 	</form>
