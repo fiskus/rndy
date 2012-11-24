@@ -1,6 +1,8 @@
-//TODO:
-//  + add url attribute for mobile
-//  + add validation
+/* TODO:
+ *
+ *    add url attribute for mobile
+ *    add validation
+ */
 
 PSW = function() {};
 
