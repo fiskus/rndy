@@ -1,7 +1,7 @@
 # Maintainer: Maxim Chervonny <fiskus@chervonny.ru>
 
 pkgname=rndy-git
-pkgver=20121105
+pkgver=20121126
 pkgrel=1
 pkgdesc="Utility for managing passwords"
 arch=('any')
@@ -29,5 +29,8 @@ build() {
   msg "GIT checkout done or server timeout"
 
   mkdir -p ${pkgdir}/usr/bin
-  cp dotploy.sh ${pkgdir}/usr/bin
+  mkdir -p ${pkgdir}/usr/share/rndy
+
+  cp core/rndy ${pkgdir}/usr/bin
+  cp -r cgi/* ${pkgdir}/usr/share/rndy
 }

@@ -2,19 +2,26 @@
 
 ## On Archlinux
 
-    $ wget https://raw.github.com/fiskus/password-manager/master/PKGBUILD && makepkg -s && sudo pacman -U rndy-git-20121105-1-any.pkg.tar.xz && rm -rf PKGBUILD pkg src rndy-git-20121105-1-any.pkg.tar.xz
+    $ yaourt -S --noconfirm rndy-git
+
+or if you haven't yaourt
+
+    $ wget https://aur.archlinux.org/packages/do/rndy-git/PKGBUILD
+    $ makepkg -s
+    $ sudo pacman -U rndy-git-*-any.pkg.tar.xz
+    $ rm -rf PKGBUILD pkg src rndy-git-*-any.pkg.tar.xz
 
 # Usage
 
 ## TUI version
 
-	$ ./rndy -d <domain name> [-u <username>] [-c <count>] [-p password] [-o]
+	$ rndy -d <domain name> [-u <username>] [-p password] [-c <count>] [-o]
 
 Than master-password promted.
 
 Default username is fiskus, default symbol's count is 20.
 
-Final password will be set to clipboard (if xclip installed)
+Final password will be set to clipboard (xclip needed)
 
 ## HOW-TO use it with fun
 
