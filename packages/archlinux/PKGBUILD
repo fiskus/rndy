@@ -1,18 +1,18 @@
 # Maintainer: Maxim Chervonny <fiskus@chervonny.ru>
 
-pkgname=psw-git
+pkgname=rndy-git
 pkgver=20121105
 pkgrel=1
 pkgdesc="Utility for managing passwords"
 arch=('any')
-url="https://github.com/fiskus/password-manager"
+url="https://github.com/fiskus/rndy"
 license=('GPL')
 depends=('bash' 'git' 'xclip')
-provides=('psw')
-conflicts=('psw')
+provides=('rndy')
+conflicts=('rndy')
 
-_gitroot="git://github.com/fiskus/password-manager.git"
-_gitname="password-manager"
+_gitroot="git://github.com/fiskus/rndy.git"
+_gitname="rndy"
 
 build() {
   cd "$srcdir"

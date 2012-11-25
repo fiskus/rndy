@@ -2,7 +2,7 @@
 
 ## On Archlinux
 
-    $ wget https://raw.github.com/fiskus/password-manager/master/PKGBUILD && makepkg -s && sudo pacman -U psw-git-20121105-1-any.pkg.tar.xz && rm -rf PKGBUILD pkg src psw-git-20121105-1-any.pkg.tar.xz
+    $ wget https://raw.github.com/fiskus/password-manager/master/PKGBUILD && makepkg -s && sudo pacman -U rndy-git-20121105-1-any.pkg.tar.xz && rm -rf PKGBUILD pkg src rndy-git-20121105-1-any.pkg.tar.xz
 
 # Usage
 
