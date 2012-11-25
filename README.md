@@ -8,7 +8,7 @@
 
 ## TUI version
 
-	$ ./psw.sh -d <domain name> [-u <username>] [-c <count>] [-p password] [-o]
+	$ ./rndy -d <domain name> [-u <username>] [-c <count>] [-p password] [-o]
 
 Than master-password promted.
 
@@ -25,14 +25,14 @@ Dependencies: zsh, Firefox with Pentadactyl or Vimperator
 Make symbolic link for this script and add to $PATH
 
 	$ mkdir bin
-	$ ln reps/password-manager/psw.sh bin/psw
+	$ ln reps/rndy/core/rndy bin/rndy
 	$ echo 'export PATH=$PATH:$HOME/bin/' >> ~/.zshrc
 
 Add aliases for your domain from .config.ini:
 
-	alias psw-livejournal='psw -d livejournal.com'
-	alias psw-twitter='psw -d twitter.com'
-	alias psw-github='psw -d github.com'
+	alias rndy-livejournal='rndy -d livejournal.com'
+	alias rndy-twitter='rndy -d twitter.com'
+	alias rndy-github='rndy -d github.com'
 
 and so on.
 
@@ -44,9 +44,9 @@ Add following to your `~/.pentadacylrc`:
 		\["livejournal.com"],
 		\["twitter.com"],
 		\["github.com"]
-		\psw ! psw -d <args>
+		\rndy ! rndy -d <args>
 
-execute `:source .pentadactylrc` to load updated config, type command `:psw` and press `Space`. You will see completion list with your sites where you need passwords. Passwords should be previously generated in pairs.
+execute `:source .pentadactylrc` to load updated config, type command `:rndy` and press `Space`. You will see completion list with your sites where you need passwords. Passwords should be previously generated in pairs.
 
 # How it works
 
