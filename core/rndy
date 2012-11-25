@@ -5,7 +5,7 @@ COUNT=20
 
 HELP=$(cat << 'EOF'
     Usage:
-    psw -d google.com -u sergey.brin -c 20
+    rndy -d google.com -u sergey.brin -c 20
 
     Options:
         -d  domain
