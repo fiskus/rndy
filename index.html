@@ -1,1 +1,97 @@
-it works
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rndy - yet another password manager</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <h1 class="title">Rndy</h1>
+        </header>
+        <div class='main'>
+<!-- copy pasted from README.md -->
+<h1>
+<a name="installation" class="anchor" href="#installation"><span class="mini-icon mini-icon-link"></span></a>Installation</h1>
+
+<h2>
+<a name="on-archlinux" class="anchor" href="#on-archlinux"><span class="mini-icon mini-icon-link"></span></a>On Archlinux</h2>
+
+<pre><code>$ yaourt -S --noconfirm rndy-git
+</code></pre>
+
+<p>or if you haven't yaourt</p>
+
+<pre><code>$ wget https://aur.archlinux.org/packages/do/rndy-git/PKGBUILD
+$ makepkg -s
+$ sudo pacman -U rndy-git-*-any.pkg.tar.xz
+$ rm -rf PKGBUILD pkg src rndy-git-*-any.pkg.tar.xz
+</code></pre>
+
+<h1>
+<a name="usage" class="anchor" href="#usage"><span class="mini-icon mini-icon-link"></span></a>Usage</h1>
+
+<h2>
+<a name="tui-version" class="anchor" href="#tui-version"><span class="mini-icon mini-icon-link"></span></a>TUI version</h2>
+
+<pre><code>$ rndy -d &lt;domain name&gt; [-u &lt;username&gt;] [-p password] [-c &lt;count&gt;] [-o]
+</code></pre>
+
+<p>Than master-password promted.</p>
+
+<p>Default username is fiskus, default symbol's count is 20.</p>
+
+<p>Final password will be set to clipboard (xclip needed)</p>
+
+<h2>
+<a name="how-to-use-it-with-fun" class="anchor" href="#how-to-use-it-with-fun"><span class="mini-icon mini-icon-link"></span></a>HOW-TO use it with fun</h2>
+
+<p>Dependencies: zsh, Firefox with Pentadactyl or Vimperator</p>
+
+<h3>
+<a name="alias" class="anchor" href="#alias"><span class="mini-icon mini-icon-link"></span></a>Alias</h3>
+
+<p>Make symbolic link for this script and add to $PATH</p>
+
+<pre><code>$ mkdir bin
+$ ln reps/rndy/core/rndy bin/rndy
+$ echo 'export PATH=$PATH:$HOME/bin/' &gt;&gt; ~/.zshrc
+</code></pre>
+
+<p>Add aliases for your domain from .config.ini:</p>
+
+<pre><code>alias rndy-livejournal='rndy -d livejournal.com'
+alias rndy-twitter='rndy -d twitter.com'
+alias rndy-github='rndy -d github.com'
+</code></pre>
+
+<p>and so on.</p>
+
+<h3>
+<a name="get-passwords-in-browser" class="anchor" href="#get-passwords-in-browser"><span class="mini-icon mini-icon-link"></span></a>Get passwords in browser</h3>
+
+<p>Add following to your <code>~/.pentadacylrc</code>:</p>
+
+<pre><code>command -nargs=1 -description='generate password for site' -complete custom,'[
+    \["livejournal.com"],
+    \["twitter.com"],
+    \["github.com"]
+    \rndy ! rndy -d &lt;args&gt;
+</code></pre>
+
+<p>execute <code>:source .pentadactylrc</code> to load updated config, type command <code>:rndy</code> and press <code>Space</code>. You will see completion list with your sites where you need passwords. Passwords should be previously generated in pairs.</p>
+
+<h1>
+<a name="how-it-works" class="anchor" href="#how-it-works"><span class="mini-icon mini-icon-link"></span></a>How it works</h1>
+
+<p>First, calculates hash from password and salt (username and domain). Then encodes to base64 and cut to defined symbols' count.</p>
+
+<p>If resulted number of symbols hasn't digit, than first letter replaced by symbols' count.</p>
+        </div>
+        <footer class="footer">
+            <p><em>Tool named in honor of Randall "Randy" Lawrence Waterhouse from <a href="https://en.wikipedia.org/wiki/Cryptonomicon">Cryptonomicon</a></em></p>
+        </footer>
+    </div>   
+</body>
+</html>

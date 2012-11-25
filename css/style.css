@@ -1,0 +1,44 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: #46483E;
+    color: #EEE;
+    font: 62.5%/140% 'Droid Sans', Arial, sans-serif;
+}
+
+.wrapper {
+    width: 775px;
+    margin: auto;
+}
+
+.header {
+    text-align: center;
+    background-color: #8CC84B;
+    padding: 20px 47px;
+    margin: 0 0 40px;
+}
+
+.title {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+a {
+    color: #690;
+}
+
+.main {
+    width: 680px;
+    margin: auto;
+    font-size: 1.4em;
+}
+
+.footer {
+    background-color: #33342D;
+    padding: 20px 47px;
+    margin: 40px 0 0;
+}
