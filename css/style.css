@@ -1,44 +1,27 @@
-html,
-body {
-    height: 100%;
+.container-narrow {
+    margin: 0 auto;
+    max-width: 700px;
 }
 
-body {
-    margin: 0;
-    background: #46483E;
-    color: #EEE;
-    font: 62.5%/140% 'Droid Sans', Arial, sans-serif;
+.container-narrow > hr {
+    margin: 30px 0;
 }
 
-.wrapper {
-    width: 775px;
-    margin: auto;
-}
-
-.header {
+.jumbotron {
+    margin: 60px 0;
     text-align: center;
-    background-color: #8CC84B;
-    padding: 20px 47px;
-    margin: 0 0 40px;
 }
 
-.title {
-    font-size: 3em;
-    font-weight: bold;
+.jumbotron h1 {
+    font-size: 72px;
+    line-height: 1;
 }
 
-a {
-    color: #690;
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
 }
 
-.main {
-    width: 680px;
-    margin: auto;
-    font-size: 1.4em;
-}
-
-.footer {
-    background-color: #33342D;
-    padding: 20px 47px;
-    margin: 40px 0 0;
+.marketing {
+    margin: 60px 0;
 }
