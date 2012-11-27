@@ -1,0 +1,33 @@
+@media handheld,
+screen and ( max-width:640px ),
+screen and ( max-device-width:640px ) {
+    .masthead-inner,
+    .jumbotron,
+    .marketing-inner,
+    .footer-inner,
+    .usage-inner {
+        max-width: 100%;
+        padding: 1px 20px;
+    }
+
+    .jumbotron h1 {
+        padding: 0;
+        font-size: 36px;
+    }
+
+    .jumbotron {
+        background: none;
+        margin: 30px auto;
+    }
+
+    .marketing .marketing-inner>div,
+    .usage .usage-inner>div {
+        width: auto;
+        margin: 0;
+        float: none;
+    }
+
+    .usage-inner {
+        width: auto;
+    }
+}
