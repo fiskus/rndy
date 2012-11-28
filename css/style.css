@@ -8,7 +8,6 @@ body {
 
 .masthead {
     background-color: #000;
-    border-bottom: 2px solid #F90;
     margin: 0 0 30px;
 }
 
@@ -20,6 +19,10 @@ body {
 
 .masthead .nav {
     margin: 13px 0;
+}
+
+.nav-pills > li {
+    margin: 0 0 0 20px;
 }
 
 .jumbotron {
