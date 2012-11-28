@@ -28,9 +28,20 @@ body {
 .jumbotron {
     margin: 60px auto;
     text-align: center;
-    background: url(../img/mascot.png) no-repeat 100% 0;
-    max-width: 650px;
-    padding: 0 230px 0 20px;
+    background: url(../img/mascot.png) no-repeat 750px 0;
+    padding: 0 20px 0 20px;
+    display: table;
+}
+
+.jumbotron-inner {
+    display: table-cell;
+    width: 650px;
+    vertical-align: top;
+}
+
+.social  {
+    display: table-cell;
+    vertical-align: bottom;
 }
 
 .jumbotron h1 {
@@ -79,4 +90,10 @@ body {
 .usage-inner {
     max-width: 900px;
     margin: auto;
+}
+
+.social > span {
+    display: block;
+    margin: 10px 0;
+    text-align: right;
 }
