@@ -29,14 +29,13 @@ body {
     margin: 60px auto;
     text-align: center;
     background: url(../img/mascot.png) no-repeat 100% 0;
-    max-width: 900px;
-    padding: 0 20px;
+    max-width: 650px;
+    padding: 0 230px 0 20px;
 }
 
 .jumbotron h1 {
     font-size: 72px;
     line-height: 1;
-    padding: 0 230px 0 0;
 }
 
 .jumbotron .btn {
