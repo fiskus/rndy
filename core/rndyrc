@@ -1,2 +1,2 @@
 RNDY_GPG=true
-RNDY_PASSWORD_PATH=$HOME/reps/rndy/core/rndypassword.gpg
+RNDY_PASSWORD_PATH=$HOME/.rndypassword.gpg
