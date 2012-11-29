@@ -27,6 +27,7 @@ Rndy.prototype.init = function() {
 };
 
 Rndy.prototype.pastePassword = function(text) {
+    console.log('pastePassword', text);
     $(this.settings.selectors.output).html(text);
 };
 
@@ -66,8 +67,8 @@ Rndy.prototype.requestPassword = function() {
     });
 };
 
-Rndy.prototype._onSuccess = function(data) {
-    this.pastePassword(data);
+Rndy.prototype._onSuccess = function(response, status, jqXHR) {
+    this.pastePassword(jqXHR.responseText);
 };
 
 Rndy.prototype._onError = function(data) {
