@@ -94,20 +94,20 @@ body {
 }
 
 .social > span {
-    margin: 10px auto;
+    margin: 0 auto;
     text-align: left;
     float: left;
 }
 
-.twitter-like {
+.social .twitter-like {
     width: 100px;
 }
 
-.google-like {
+.social .google-like {
     width: 80px;
 }
 
-.facebook-like {
+.social .facebook-like {
     width: 150px;
     margin: 0 -80px 0 0;
 }
