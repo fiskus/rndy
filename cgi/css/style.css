@@ -49,32 +49,6 @@ SELECT {
     margin: 10px 0;
 }
 
-@media handheld,
-screen and (max-width:1024px),
-screen and (max-device-width:1024px) {
-    FORM {
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        background-color: transparent;
-        border: none;
-        box-shadow: none;
-    }
-
-    INPUT,
-    SELECT {
-        font-size: 1.8em;
-        line-height: 1.2em;
-    }
-
-    INPUT[type="text"],
-    INPUT[type="password"],
-    INPUT[type="url"],
-    INPUT[type="submit"] {
-        width: 280px;
-    }
-}
-
 INPUT:-moz-placeholder {
     color: #999;
 }
