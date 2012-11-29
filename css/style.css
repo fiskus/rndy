@@ -28,9 +28,10 @@ body {
 .jumbotron {
     margin: 60px auto;
     text-align: center;
-    background: url(../img/mascot.png) no-repeat 750px 0;
+    background: url(../img/mascot.png) no-repeat 700px 0;
     padding: 0 20px 0 20px;
     display: table;
+    width: 900px;
 }
 
 .jumbotron-inner {
@@ -94,6 +95,7 @@ body {
 
 .social > span {
     display: block;
-    margin: 10px 0;
-    text-align: right;
+    margin: 10px auto;
+    text-align: left;
+    width: 200px;
 }
