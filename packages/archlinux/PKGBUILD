@@ -1,7 +1,7 @@
 # Maintainer: Maxim Chervonny <fiskus@chervonny.ru>
 
 pkgname=rndy-git
-pkgver=20121126
+pkgver=20121129
 pkgrel=1
 pkgdesc="Utility for managing passwords"
 arch=('any')
