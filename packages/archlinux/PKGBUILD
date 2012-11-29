@@ -30,7 +30,10 @@ build() {
 
   mkdir -p ${pkgdir}/usr/bin
   mkdir -p ${pkgdir}/usr/share/rndy
+  mkdir -p ${pkgdir}/usr/share/rndy/example/
+  mkdir -p ${pkgdir}/usr/share/rndy/cgi/
 
   cp core/rndy ${pkgdir}/usr/bin
-  cp -r cgi/* ${pkgdir}/usr/share/rndy
+  cp core/rndyrc ${pkgdir}/usr/share/rndy/example/
+  cp -r cgi/* ${pkgdir}/usr/share/rndy/cgi/
 }
