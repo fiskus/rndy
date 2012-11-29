@@ -27,7 +27,6 @@ Rndy.prototype.init = function() {
 };
 
 Rndy.prototype.pastePassword = function(text) {
-    console.log('pastePassword', text);
     $(this.settings.selectors.output).html(text);
 };
 
