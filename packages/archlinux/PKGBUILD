@@ -7,7 +7,7 @@ pkgdesc="Utility for managing passwords"
 arch=('any')
 url="https://github.com/fiskus/rndy"
 license=('GPL')
-depends=('bash' 'git' 'xclip')
+depends=('bash' 'git' 'xclip', 'python2-flask')
 provides=('rndy')
 conflicts=('rndy')
 
