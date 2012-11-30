@@ -53,6 +53,8 @@ while getopts ":d:u:c:p:f:o" opt; do
     esac
 done
 
+
+mkdir -p $HOME/.rndy/domains $HOME/.rndy/usernames
 touch $HOME/.rndy/domains/$DOMAIN
 touch $HOME/.rndy/usernames/$USERNAME
 
