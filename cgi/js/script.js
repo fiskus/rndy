@@ -2,7 +2,6 @@
  *
  *    add url attribute for mobile
  *    add validation
- *    process datalist node removing
  */
 
 Rndy = function() {};
@@ -34,6 +33,14 @@ Rndy.prototype.init = function() {
     if (this.isDomainStored()) {
         this.setDomainsList();
     }
+
+    if (this.isMobile()) {
+        this.initMobile();
+    }
+};
+
+Rndy.prototype.initMobile = function() {
+    //
 };
 
 Rndy.prototype.pastePassword = function(text) {
@@ -142,4 +149,9 @@ Rndy.prototype.setDomainsList = function() {
     for (var i in domains) {
         this.domainList.append('<option value="' + domains[i] + '"></option>');
     }
+};
+
+
+Rndy.prototype.isMobile = function() {
+    return window.navigator.userAgent.indexOf('Mobile') > -1;
 };

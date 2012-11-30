@@ -1,5 +1,5 @@
 {% include "header.html" %}
-    <div class="output"></div>
+<div class="output">{{ mobile }}</div>
     <form action="" method="post" enctype="multipart/form-data">
         <fieldset class="inputs">
             <p class="input-wrapper username-wrapper">
@@ -15,7 +15,11 @@
                 <input
                     id="domain"
                     name="domain"
-                    type="text"
+                    {% if mobile %}
+                        type="url"
+                    {% else %}
+                        type="text"
+                    {% endif %}
                     placeholder="Domain"
                     tabindex="2"
                     list="domain-list"
@@ -39,26 +43,14 @@
                 <label for="count">
                     length
                     <select id="count" name="count" tabindex="4">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8" selected>8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
+                        {% for i in range(1, 21) %}
+                            <option
+                                {% if loop.index == 8 %}
+                                    selected="selected"
+                                {% endif %}
+                                value="{{ i }}"
+                                >{{ i }}</option>
+                        {% endfor %}
                 </select>
             </label>
             </p>
@@ -76,6 +68,7 @@
                 value="Get password!" />
         </p>
     </form>
+
     <script src="js/jquery.js"></script>
     <script src="js/script.js"></script>
     <script>

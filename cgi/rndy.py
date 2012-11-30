@@ -15,7 +15,8 @@ def index():
         else:
             return render_template('output.html', password=password)
     else:
-        return render_template('rndy.html')
+        mobile = request.headers.get('User-Agent').find('Mobile') > -1
+        return render_template('rndy.html', mobile=mobile)
 
 
 def getPassword(request):

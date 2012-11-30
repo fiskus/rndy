@@ -20,11 +20,11 @@ screen and (max-device-width:1024px) {
     .hash INPUT[type="text"],
     .hash INPUT[type="password"],
     .hash INPUT[type="url"],
-    .hash INPUT[type="submit"] {
-    .hash INPUT[type="text"],
-    .hash INPUT[type="password"],
-    .hash INPUT[type="url"],
-    .hash INPUT[type="submit"] {
+    .hash INPUT[type="submit"],
+    INPUT[type="text"],
+    INPUT[type="password"],
+    INPUT[type="url"],
+    INPUT[type="submit"] {
         width: 280px;
     }
 }
