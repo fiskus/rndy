@@ -1,9 +1,13 @@
 #compdef rndy
 
 arguments=(
-    '*-u[username]: :_files -W $HOME/.rndy/usernames' \
-    '*-d[domain]: :_files -W $HOME/.rndy/domains'
+    '*-u[username]: :_files -W $XDG_CONFIG_HOME/rndy/usernames'
+    '*-d[domain]: :_files -W $XDG_CONFIG_HOME/rndy/domains'
     '*-c[symbols count]: :(8)'
+    '*-p[master password]'
+    '*-f[path to config file]'
+    '*-o[output to STDOUT instead of clipboard]'
+    '*-h[show help]'
 )
 
 _arguments -s $arguments

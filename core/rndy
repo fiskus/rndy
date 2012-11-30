@@ -1,13 +1,14 @@
 #!/bin/bash
 
-USERNAME=fiskus
-COUNT=20
-CONFIG='$HOME/.rndyrc'
+COUNT=8
+CONFIG='$XDG_CONFIG_HOME/rndy/rndyrc'
 RNDY_GPG=false
+
+mkdir -p $XDG_CONFIG_HOME/rndy/domains $XDG_CONFIG_HOME/rndy/usernames
 
 HELP=$(cat << 'EOF'
     Usage:
-    rndy -d google.com -u sergey.brin -c 20
+    rndy -d example.com -u username -c 8
 
     Options:
         -d  domain
@@ -54,9 +55,8 @@ while getopts ":d:u:c:p:f:o" opt; do
 done
 
 
-mkdir -p $HOME/.rndy/domains $HOME/.rndy/usernames
-touch $HOME/.rndy/domains/$DOMAIN
-touch $HOME/.rndy/usernames/$USERNAME
+touch $XDG_CONFIG_HOME/rndy/domains/$DOMAIN
+touch $XDG_CONFIG_HOME/rndy/usernames/$USERNAME
 
 
 if [[ $DOMAIN == "" ]]; then
