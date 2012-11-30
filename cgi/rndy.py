@@ -27,5 +27,10 @@ def getPassword(request):
     return password
 
 
+@app.route('/settings', methods=['GET'])
+def settings():
+    return render_template('settings.html')
+
+
 if __name__ == '__main__':
     app.run()
