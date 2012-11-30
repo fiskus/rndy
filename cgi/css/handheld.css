@@ -10,16 +10,21 @@ screen and (max-device-width:1024px) {
         box-shadow: none;
     }
 
+    .hash INPUT,
     INPUT,
     SELECT {
         font-size: 1.8em;
         line-height: 1.2em;
     }
 
-    INPUT[type="text"],
-    INPUT[type="password"],
-    INPUT[type="url"],
-    INPUT[type="submit"] {
+    .hash INPUT[type="text"],
+    .hash INPUT[type="password"],
+    .hash INPUT[type="url"],
+    .hash INPUT[type="submit"] {
+    .hash INPUT[type="text"],
+    .hash INPUT[type="password"],
+    .hash INPUT[type="url"],
+    .hash INPUT[type="submit"] {
         width: 280px;
     }
 }

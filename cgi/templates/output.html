@@ -1,12 +1,4 @@
-<!DOCTYPE>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" href="/style.css" />
-    </head>
-<body>
+{% include "header.html" %}
     <p class=domain>{{ request.form.domain }}</p>
     <p class=hash><input value="{{ password }}" autofocus/></p>
-</body>
-</html>
+{% include "footer.html" %}
