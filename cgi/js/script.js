@@ -59,7 +59,7 @@ Rndy.prototype.isAjax = function() {
 
 Rndy.prototype.serialize = function() {
     this.storePassword();
-    //this.storeDomain();
+    this.storeDomain();
     this.data = this.form.serialize();
 };
 
@@ -121,8 +121,12 @@ Rndy.prototype.showPasswordInput = function() {
 
 Rndy.prototype.storeDomain = function() {
     var domainsString = localStorage.getItem('domains') || '',
-        domains = domainsString.split(',');
-    domains.push(this.domainInput.val());
+        domains = domainsString.split(','),
+        domain = this.domainInput.val();
+    if ($.inArray(domain, domains) > -1 || domain === '') {
+        return false;
+    }
+    domains.push(domain);
     localStorage.setItem('domains', domains);
 };
 
