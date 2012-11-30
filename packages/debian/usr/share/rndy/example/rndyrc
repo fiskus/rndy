@@ -1,2 +1,2 @@
 RNDY_GPG=true
-RNDY_PASSWORD_PATH=$HOME/.rndypassword.gpg
+RNDY_PASSWORD_PATH=$XDG_CONFIG_HOME/.rndypassword.gpg
