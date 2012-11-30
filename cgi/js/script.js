@@ -5,9 +5,9 @@
  *    process datalist node removing
  */
 
-PSW = function() {};
+Rndy = function() {};
 
-PSW.prototype.settings = {
+Rndy.prototype.settings = {
     selectors: {
         form: 'form',
         ajax: '#ajax',
@@ -19,14 +19,13 @@ PSW.prototype.settings = {
     }
 };
 
-
-PSW.prototype.init = function() {
+Rndy.prototype.init = function() {
     this.form = $(this.settings.selectors.form);
     this.form.on('submit', $.proxy(this._onSubmit, this));
 
-    this.passwordInput = $(this.settings.selectors.password)
-    this.domainInput = $(this.settings.selectors.domain)
-    this.domainList = $(this.settings.selectors.domainList)
+    this.passwordInput = $(this.settings.selectors.password);
+    this.domainInput = $(this.settings.selectors.domain);
+    this.domainList = $(this.settings.selectors.domainList);
 
     if (this.isPaswordStored()) {
         this.hidePasswordInput();
@@ -37,13 +36,11 @@ PSW.prototype.init = function() {
     }
 };
 
-
-PSW.prototype.pastePassword = function(text) {
+Rndy.prototype.pastePassword = function(text) {
     $(this.settings.selectors.output).html(text);
 };
 
-
-PSW.prototype._onSubmit = function(event) {
+Rndy.prototype._onSubmit = function(event) {
     if (this.isAjax()) {
         event.preventDefault();
         this.serialize();
@@ -56,20 +53,17 @@ PSW.prototype._onSubmit = function(event) {
     }
 };
 
-
-PSW.prototype.isAjax = function() {
+Rndy.prototype.isAjax = function() {
     return $(this.settings.selectors.ajax).prop('checked');
 };
 
-
-PSW.prototype.serialize = function() {
+Rndy.prototype.serialize = function() {
     this.storePassword();
     this.storeDomain();
     this.data = this.form.serialize();
 };
 
-
-PSW.prototype.requestPassword = function() {
+Rndy.prototype.requestPassword = function() {
     var url = this.form.attr('action');
 
     $.ajax({
@@ -83,23 +77,19 @@ PSW.prototype.requestPassword = function() {
     });
 };
 
-
-PSW.prototype._onSuccess = function(data) {
-    this.pastePassword(data);
+Rndy.prototype._onSuccess = function(response, status, jqXHR) {
+    this.pastePassword(jqXHR.responseText);
 };
 
-
-PSW.prototype._onError = function(data) {
+Rndy.prototype._onError = function(data) {
     this.pastePassword('ERROR: ' + data);
 };
 
-
-PSW.prototype.storePassword = function(data) {
+Rndy.prototype.storePassword = function(data) {
     sessionStorage.setItem('masterpassword', this.passwordInput.val());
 };
 
-
-PSW.prototype.isPaswordStored = function() {
+Rndy.prototype.isPaswordStored = function() {
     var password = sessionStorage.getItem('masterpassword');
 
     if (password) {
@@ -110,8 +100,7 @@ PSW.prototype.isPaswordStored = function() {
     }
 };
 
-
-PSW.prototype.hidePasswordInput = function() {
+Rndy.prototype.hidePasswordInput = function() {
     this.passwordInput.val(this.password);
     this.passwordInput.hide();
     this.passwordReset = $(this.settings.selectors.passwordReset);
@@ -120,7 +109,7 @@ PSW.prototype.hidePasswordInput = function() {
 };
 
 
-PSW.prototype.showPasswordInput = function() {
+Rndy.prototype.showPasswordInput = function() {
     this.passwordInput
         .val('')
         .show()
@@ -130,7 +119,7 @@ PSW.prototype.showPasswordInput = function() {
 };
 
 
-PSW.prototype.storeDomain = function() {
+Rndy.prototype.storeDomain = function() {
     var domainsString = localStorage.getItem('domains') || '',
         domains = domainsString.split(',');
     domains.push(this.domainInput.val());
@@ -138,15 +127,15 @@ PSW.prototype.storeDomain = function() {
 };
 
 
-PSW.prototype.isDomainStored = function() {
+Rndy.prototype.isDomainStored = function() {
     return localStorage.getItem('domains');
 };
 
 
-PSW.prototype.setDomainsList = function() {
+Rndy.prototype.setDomainsList = function() {
     var domainsString = localStorage.getItem('domains') || '',
         domains = domainsString.split(',');
-    for (i in domains) {
+    for (var i in domains) {
         this.domainList.append('<option value="' + domains[i] + '"></option>');
     }
 };

@@ -1,18 +1,18 @@
 # Maintainer: Maxim Chervonny <fiskus@chervonny.ru>
 
-pkgname=psw-git
-pkgver=20121105
+pkgname=rndy-git
+pkgver=20121129
 pkgrel=1
 pkgdesc="Utility for managing passwords"
 arch=('any')
-url="https://github.com/fiskus/password-manager"
+url="https://github.com/fiskus/rndy"
 license=('GPL')
 depends=('bash' 'git' 'xclip')
-provides=('psw')
-conflicts=('psw')
+provides=('rndy')
+conflicts=('rndy')
 
-_gitroot="git://github.com/fiskus/password-manager.git"
-_gitname="password-manager"
+_gitroot="git://github.com/fiskus/rndy.git"
+_gitname="rndy"
 
 build() {
   cd "$srcdir"
@@ -29,5 +29,11 @@ build() {
   msg "GIT checkout done or server timeout"
 
   mkdir -p ${pkgdir}/usr/bin
-  cp dotploy.sh ${pkgdir}/usr/bin
+  mkdir -p ${pkgdir}/usr/share/rndy
+  mkdir -p ${pkgdir}/usr/share/rndy/example/
+  mkdir -p ${pkgdir}/usr/share/rndy/cgi/
+
+  cp core/rndy ${pkgdir}/usr/bin
+  cp core/rndyrc ${pkgdir}/usr/share/rndy/example/
+  cp -r cgi/* ${pkgdir}/usr/share/rndy/cgi/
 }

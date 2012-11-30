@@ -1,0 +1,2 @@
+RNDY_GPG=true
+RNDY_PASSWORD_PATH=$HOME/.rndypassword.gpg

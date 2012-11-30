@@ -1,2 +1,6 @@
 *.swp
 *.pyc
+packages/archlinux/pkg
+packages/archlinux/src
+packages/archlinux/rndy-git-*-any.pkg.tar.xz
+packages/archlinux/rndy-git-*.src.tar.gz
