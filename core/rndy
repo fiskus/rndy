@@ -73,17 +73,10 @@ if [[ $RNDY_GPG == true ]]; then
     MASTERPASSWORD=`gpg --batch --quiet -d $RNDY_PASSWORD_PATH `
 fi
 
-
 if [[ ! $MASTERPASSWORD ]]; then
-    if [[ ! -a $HOME/.masterpassword ]]; then
-        echo -n 'Type master-password: '
-        read -s MASTERPASSWORD
-        echo -n $MASTERPASSWORD > $HOME/.masterpassword
-        echo '' #new line for spliting prompt and password
-    else
-        MASTERPASSWORD=`cat $HOME/.masterpassword`
-        chmod 0700 $HOME/.masterpassword
-    fi
+    echo -n 'Type master-password: '
+    read -s MASTERPASSWORD
+    echo '' #new line for spliting prompt and password
 fi
 
 if [[ $MASTERPASSWORD == "" ]]; then
