@@ -1,13 +1,14 @@
 # Maintainer: Maxim Chervonny <fiskus@chervonny.ru>
 
 pkgname=rndy-git
-pkgver=20121129
+pkgver=20121201
 pkgrel=1
 pkgdesc="Utility for managing passwords"
 arch=('any')
 url="https://github.com/fiskus/rndy"
-license=('GPL')
-depends=('zsh' 'git' 'xclip', 'python2-flask', 'gnupg')
+license=('MIT')
+depends=('git' 'xclip')
+optdepends=('zsh' 'python2-flask' 'gnupg')
 provides=('rndy')
 conflicts=('rndy')
 
