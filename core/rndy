@@ -53,6 +53,9 @@ while getopts ":d:u:c:p:f:o" opt; do
     esac
 done
 
+touch $HOME/.rndy/domains/$DOMAIN
+touch $HOME/.rndy/usernames/$USERNAME
+
 
 if [[ $DOMAIN == "" ]]; then
     echo "$HELP"
