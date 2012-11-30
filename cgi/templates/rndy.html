@@ -1,5 +1,5 @@
 {% include "header.html" %}
-<div class="output">{{ mobile }}</div>
+<div class="output"></div>
     <form action="" method="post" enctype="multipart/form-data">
         <fieldset class="inputs">
             <p class="input-wrapper username-wrapper">
@@ -15,11 +15,7 @@
                 <input
                     id="domain"
                     name="domain"
-                    {% if mobile %}
-                        type="url"
-                    {% else %}
-                        type="text"
-                    {% endif %}
+                    type="text"
                     placeholder="Domain"
                     tabindex="2"
                     list="domain-list"
