@@ -59,7 +59,7 @@ Rndy.prototype.isAjax = function() {
 
 Rndy.prototype.serialize = function() {
     this.storePassword();
-    this.storeDomain();
+    //this.storeDomain();
     this.data = this.form.serialize();
 };
 

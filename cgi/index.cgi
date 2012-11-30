@@ -5,6 +5,6 @@ cgitb.enable()
 
 
 from wsgiref.handlers import CGIHandler
-from hello import app
+from rndy import app
 
 CGIHandler().run(app)
