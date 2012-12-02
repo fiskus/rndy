@@ -1,74 +1,15 @@
 {% include "header.html" %}
-<div class="output"></div>
-    <form action="" method="post" enctype="multipart/form-data">
-        <fieldset class="inputs">
-            <p class="input-wrapper username-wrapper">
-                <input
-                    id="username"
-                    name="username"
-                    type="text"
-                    placeholder="Username"
-                    tabindex="1"
-                    required />
-            </p>
-            <p class="input-wrapper domain-wrapper">
-                <input
-                    id="domain"
-                    name="domain"
-                    type="text"
-                    placeholder="Domain"
-                    tabindex="2"
-                    list="domain-list"
-                    autocomplete="off"
-                    required />
-                <datalist id="domain-list"></datalist>
-            </p>
-            <p class="input-wrapper password-wrapper">
-                <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    placeholder="Master-password"
-                    tabindex="3"
-                    required />
-                <span class="password-reset">Re-enter password</span>
-            </p>
-        </fieldset>
-        <fieldset class="checkboxes">
-            <p class="count-wrapper">
-                <label for="count">
-                    length
-                    <select id="count" name="count" tabindex="4">
-                        {% for i in range(1, 21) %}
-                            <option
-                                {% if loop.index == 8 %}
-                                    selected="selected"
-                                {% endif %}
-                                value="{{ i }}"
-                                >{{ i }}</option>
-                        {% endfor %}
-                </select>
-            </label>
-            </p>
-            <p class="ajax-wrapper">
-                <label for="ajax">
-                    <input id="ajax" name="ajax" type="checkbox" checked />
-                    without page reload
-                </label>
-            </p>
-        </fieldset>
-        <p>
-            <input
-                type="submit"
-                tabindex="5"
-                value="Get password!" />
-        </p>
-    </form>
 
-    <script src="js/jquery.js"></script>
-    <script src="js/script.js"></script>
-    <script>
-        var rndy = new Rndy();
-        rndy.init();
-    </script>
+<div class="wrapper">
+    <div class="output"></div>
+
+    {% include "form.html" %}
+
+    {% include "controls.html" %}
+
+    {% include "popup.html" %}
+</div>
+
+{% include "js.html" %}
+
 {% include "footer.html" %}

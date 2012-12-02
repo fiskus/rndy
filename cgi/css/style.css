@@ -3,17 +3,23 @@ BODY {
     text-align: center;
     color: #333;
     margin: 0;
-    padding: 10px;
+    padding: 0;
     background-color: #fff;
 }
 
-FORM {
+.wrapper {
+    padding: 10px 0;
+    width: 424px;
+    margin: auto;
+    position: relative;
+}
+
+FORM,
+.popup {
     background-color: #fafafa;
     border: 1px solid #dcdcdc;
     border-radius: 4px 4px 4px 4px;
     box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.15);
-    width: 384px;
-    margin: auto;
     padding: 10px 20px;
 }
 
@@ -72,7 +78,7 @@ LABEL[for='ajax'] {
     vertical-align: middle;
 }
 
-.domain {
+.hash .domain {
     margin-top: 100px;
     color: #CCC;
 }
@@ -180,4 +186,62 @@ FIELDSET {
 
 .count-wrapper {
     float: left;
+}
+
+.controls {
+    left: 50%;
+    margin: 10px 0 0 223px;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    width: 100px;
+}
+
+.controls SPAN {
+    color: #999;
+    border-bottom: 1px dotted #999;
+    cursor: pointer;
+}
+
+.popuped .controls SPAN {
+    color: #CCC;
+    border-bottom-color: #CCC;
+}
+
+.controls SPAN:hover {
+    color: #000;
+    border-bottom-color: #000;
+}
+
+.popup {
+    display: none;
+    position: absolute;
+    top: 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+
+.popup-close {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.popup-content UL {
+    padding: 0 0 0 100px;
+    text-align: left;
+    line-height: 30px;
+}
+
+.popup-content .domain {
+    border-bottom: 1px dotted #000;
+    cursor: pointer;
+}
+
+.popup-content .domain:hover {
+    border-bottom: none;
 }

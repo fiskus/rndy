@@ -1,33 +1,31 @@
-{% include "header.html" %}
-    <div class="domains-list"></div>
-    <script src="/js/jquery.js"></script>
-    <script>
-        $(function() {
+<div class="domains-list"></div>
+<script src="/js/jquery.js"></script>
+<script>
+    $(function() {
+        var domainsString = localStorage.getItem('domains') || '',
+            domains = domainsString.split(','),
+            output = '<ul>';
+
+        for (var i in domains) {
+            output += '<li>' + domains[i] + '</li>';
+        }
+        output += '</ul>';
+        $('.domains-list').html(output);
+
+        $('li').on('click', function() {
             var domainsString = localStorage.getItem('domains') || '',
                 domains = domainsString.split(','),
-                output = '<ul>';
-
+                domain = $(this).text(),
+                newDomains = [];
             for (var i in domains) {
-                output += '<li>' + domains[i] + '</li>';
+                if (domain != domains[i]) {
+                    newDomains.push(domains[i])
+                }
             }
-            output += '</ul>';
-            $('.domains-list').html(output);
 
-            $('li').on('click', function() {
-                var domainsString = localStorage.getItem('domains') || '',
-                    domains = domainsString.split(','),
-                    domain = $(this).text(),
-                    newDomains = [];
-                for (var i in domains) {
-                    if (domain != domains[i]) {
-                        newDomains.push(domains[i])
-                    }
-                }
-
-                if (confirm('Realy remove ' + domain)) {
-                    localStorage.setItem('domains', newDomains);
-                }
-            });
+            if (confirm('Realy remove ' + domain)) {
+                localStorage.setItem('domains', newDomains);
+            }
         });
-    </script>
-{% include "footer.html" %}
+    });
+</script>
