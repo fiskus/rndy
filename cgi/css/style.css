@@ -197,18 +197,24 @@ FIELDSET {
     width: 100px;
 }
 
-.controls SPAN {
+.controls > SPAN {
+    display: block;
+    white-space: nowrap;
+}
+
+.controls SPAN SPAN {
     color: #999;
     border-bottom: 1px dotted #999;
     cursor: pointer;
+    line-height: 30px;
 }
 
-.popuped .controls SPAN {
+.popuped .controls SPAN SPAN {
     color: #CCC;
     border-bottom-color: #CCC;
 }
 
-.controls SPAN:hover {
+.controls SPAN SPAN:hover {
     color: #000;
     border-bottom-color: #000;
 }

@@ -37,7 +37,6 @@ RndyDomainSettings.prototype.getDomainsList = function() {
     }
     var domains = domainsString.split(','),
         html = '<h2>Click domain to remove</h2><ul>';
-    console.log(domainsString);
 
     for (var i in domains) {
         html += '<li><span class="domain">' + domains[i] + '</span></li>';

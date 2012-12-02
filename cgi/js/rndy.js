@@ -17,6 +17,7 @@ Rndy.prototype.options = {
         domainList: '#domain-list',
         passwordReset: '.password-reset',
         settingsControl: '.settings_control',
+        clearControl: '.clear_control',
         popup: '.popup'
     }
 };
@@ -32,6 +33,7 @@ Rndy.prototype.init = function() {
     this.domainInput = $(els.domain);
     this.domainList = $(els.domainList);
     this.settingsControl = $(els.settingsControl);
+    this.clearControl = $(els.clearControl);
 
     if (this.isPaswordStored()) {
         this.hidePasswordInput();
@@ -57,6 +59,9 @@ Rndy.prototype.initMobile = function() {
 Rndy.prototype.initSettings = function() {
     this.settingsControl
         .on('click', $.proxy(this.showDomainSettings, this));
+
+    this.clearControl
+        .on('click', $.proxy(this.clearDomains, this));
 };
 
 
@@ -220,4 +225,11 @@ Rndy.prototype.initSpinner = function() {
 Rndy.prototype.hideSpinner = function() {
     $('html').removeClass('loading');
     this.form.spin(false);
+};
+
+
+Rndy.prototype.clearDomains = function() {
+    if (confirm('Realy remove all domains from local storage?')) {
+        localStorage.setItem('domains', []);
+    }
 };
