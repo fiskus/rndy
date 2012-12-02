@@ -217,10 +217,15 @@ FIELDSET {
     display: none;
     position: absolute;
     top: 10px;
-    bottom: 0;
+    bottom: 10px;
     left: 0;
     right: 0;
     margin: 0;
+}
+
+.loading .popup {
+    display: block;
+    opacity: 0.7;
 }
 
 .popup-close {
@@ -244,4 +249,9 @@ FIELDSET {
 
 .popup-content .domain:hover {
     border-bottom: none;
+}
+
+.loading .popup-close,
+.loading .popup-content {
+    display: none;
 }

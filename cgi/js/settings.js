@@ -1,6 +1,8 @@
 RndyDomainSettings = function() {};
 
+
 extend(RndyDomainSettings, RndyPopup);
+
 
 RndyDomainSettings.prototype.options = $.extend(
     true,
@@ -12,6 +14,7 @@ RndyDomainSettings.prototype.options = $.extend(
         }
     }
 );
+
 
 RndyDomainSettings.prototype.init = function() {
     RndyDomainSettings._super.init.call(this);

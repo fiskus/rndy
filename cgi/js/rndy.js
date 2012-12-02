@@ -1,9 +1,11 @@
 /* TODO:
  *
  *    add validation
+ *    move form to standalone object
  */
 
 Rndy = function() {};
+
 
 Rndy.prototype.options = {
     selectors: {
@@ -18,6 +20,7 @@ Rndy.prototype.options = {
         popup: '.popup'
     }
 };
+
 
 Rndy.prototype.init = function() {
     var els = this.options.selectors;
@@ -45,17 +48,22 @@ Rndy.prototype.init = function() {
     this.initSettings();
 };
 
+
 Rndy.prototype.initMobile = function() {
     //
 };
 
+
 Rndy.prototype.initSettings = function() {
-    this.settingsControl.on('click', $.proxy(this.showDomainSettings, this));
+    this.settingsControl
+        .on('click', $.proxy(this.showDomainSettings, this));
 };
+
 
 Rndy.prototype.pastePassword = function(text) {
     $(this.options.selectors.output).html(text);
 };
+
 
 Rndy.prototype._onSubmit = function(event) {
     if (this.isAjax()) {
@@ -70,9 +78,11 @@ Rndy.prototype._onSubmit = function(event) {
     }
 };
 
+
 Rndy.prototype.isAjax = function() {
     return $(this.options.selectors.ajax).prop('checked');
 };
+
 
 Rndy.prototype.serialize = function() {
     this.storePassword();
@@ -80,8 +90,11 @@ Rndy.prototype.serialize = function() {
     this.data = this.form.serialize();
 };
 
+
 Rndy.prototype.requestPassword = function() {
     var url = this.form.attr('action');
+
+    this.initSpinner();
 
     $.ajax({
         type: 'POST',
@@ -94,17 +107,23 @@ Rndy.prototype.requestPassword = function() {
     });
 };
 
+
 Rndy.prototype._onSuccess = function(response, status, jqXHR) {
+    this.hideSpinner();
     this.pastePassword(jqXHR.responseText);
 };
 
+
 Rndy.prototype._onError = function(data) {
+    this.hideSpinner();
     this.pastePassword('ERROR: ' + data);
 };
+
 
 Rndy.prototype.storePassword = function(data) {
     sessionStorage.setItem('masterpassword', this.passwordInput.val());
 };
+
 
 Rndy.prototype.isPaswordStored = function() {
     var password = sessionStorage.getItem('masterpassword');
@@ -117,9 +136,11 @@ Rndy.prototype.isPaswordStored = function() {
     }
 };
 
+
 Rndy.prototype.hidePasswordInput = function() {
     this.passwordInput.val(this.password);
     this.passwordInput.hide();
+
     this.passwordReset = $(this.options.selectors.passwordReset);
     this.passwordReset.addClass('active');
     this.passwordReset.on('click', $.proxy(this.showPasswordInput, this));
@@ -176,4 +197,27 @@ Rndy.prototype.showDomainSettings = function() {
     this.domainSettings = new RndyDomainSettings();
     this.domainSettings.init();
     this.domainSettings.show();
+};
+
+
+Rndy.prototype.initSpinner = function() {
+    $('html').addClass('loading');
+
+    this.form.spin({
+        length: 13,
+        width: 10,
+        radius: 40,
+        color: '#000',
+        speed: 1.6,
+        shadow: true,
+        hwaccel: true,
+        className: 'spinner',
+        zIndex: 2
+    });
+};
+
+
+Rndy.prototype.hideSpinner = function() {
+    $('html').removeClass('loading');
+    this.form.spin(false);
 };
