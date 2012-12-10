@@ -3,7 +3,7 @@
 COUNT=8
 RNDY_GPG=false
 INSTALL_SCRIPT="$HOME/reps/rndy/core/install"
-CONFIG="$XDG_CONFIG_HOME/rndy/rndyrc"
+CONFIG="$HOME/.rndy/rndyrc"
 
 HELP=$(cat << 'EOF'
     Usage:
@@ -59,10 +59,10 @@ if [[ ! -a $CONFIG ]]; then
 fi
 
 
-mkdir -p $XDG_CONFIG_HOME/rndy/domains $XDG_CONFIG_HOME/rndy/usernames
+mkdir -p $HOME/.rndy/domains $HOME/.rndy/usernames
 
-touch $XDG_CONFIG_HOME/rndy/domains/$DOMAIN
-touch $XDG_CONFIG_HOME/rndy/usernames/$USERNAME
+touch $HOME/.rndy/domains/$DOMAIN
+touch $HOME/.rndy/usernames/$USERNAME
 
 
 if [[ $DOMAIN == "" ]]; then
