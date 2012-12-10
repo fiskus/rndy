@@ -1,10 +1,9 @@
 #!/bin/bash
 
 COUNT=8
-CONFIG='$XDG_CONFIG_HOME/rndy/rndyrc'
 RNDY_GPG=false
-
-mkdir -p $XDG_CONFIG_HOME/rndy/domains $XDG_CONFIG_HOME/rndy/usernames
+INSTALL_SCRIPT="$HOME/reps/rndy/core/install"
+CONFIG="$XDG_CONFIG_HOME/rndy/rndyrc"
 
 HELP=$(cat << 'EOF'
     Usage:
@@ -54,6 +53,13 @@ while getopts ":d:u:c:p:f:o" opt; do
     esac
 done
 
+
+if [[ ! -a $CONFIG ]]; then
+    source $INSTALL_SCRIPT
+fi
+
+
+mkdir -p $XDG_CONFIG_HOME/rndy/domains $XDG_CONFIG_HOME/rndy/usernames
 
 touch $XDG_CONFIG_HOME/rndy/domains/$DOMAIN
 touch $XDG_CONFIG_HOME/rndy/usernames/$USERNAME

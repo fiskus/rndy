@@ -1,0 +1,49 @@
+#!/bin/bash
+
+CONFIG="$XDG_CONFIG_HOME/rndy/rndyrc"
+
+echo "Rndy was started first time. Do you want to create configuration file? (Y/n)"
+
+read -n 1 -s YES_OR_NO
+
+function setMasterPassword {
+    cp /usr/share/rndy/example/rndyrc $CONFIG
+    echo "Set master password:"
+    read -s MASTERPASSWORD
+    tmp=$(mktemp)
+    echo -n $MASTERPASSWORD > $tmp
+    echo $tmp
+    "Already use GPG? (Y/n)"
+    read -n 1 -s YES_OR_NO
+    if [[ $YES_OR_NO != 'n' ]]; then
+        encryptMaterPassword
+    else
+        installGpgKey
+    fi
+    exit
+}
+
+function installGpgKey {
+    encryptMaterPassword
+    exit
+}
+
+function encryptMaterPassword {
+    #gpg -o $XDG_CONFIG_HOME/rndy/rndypassword.gpg -e $tmp
+    #rm $tmp
+    exit
+}
+
+if [[ $YES_OR_NO != 'n' ]]; then
+    touch $CONFIG
+
+    echo "Use GPG? (Y/n)"
+    read -n 1 -s YES_OR_NO
+    if [[ $YES_OR_NO != 'n' ]]; then
+        setMasterPassword
+    else
+        exit 0
+    fi
+else
+    exit 0
+fi
