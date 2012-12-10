@@ -32,13 +32,13 @@ build() {
   mkdir -p ${pkgdir}/usr/bin
   mkdir -p ${pkgdir}/usr/share/rndy
   mkdir -p ${pkgdir}/usr/share/rndy/example
-  mkdir -p ${pkgdir}/usr/share/rndy/cgi
+  mkdir -p ${pkgdir}/usr/share/webapps/rndy
   mkdir -p ${pkgdir}/usr/share/zsh/functions/Completion/Linux
   mkdir -p ${pkgdir}/usr/share/man/man1
 
   cp core/rndy ${pkgdir}/usr/bin
   cp core/rndyrc ${pkgdir}/usr/share/rndy/example/
   cp core/_rndy ${pkgdir}/usr/share/zsh/functions/Completion/Linux/
-  cp -r cgi/* ${pkgdir}/usr/share/rndy/cgi/
+  cp -r cgi/* ${pkgdir}/usr/share/webapps/rndy/
   cp doc/rndy.1.gz ${pkgdir}/usr/share/man/man1/
 }
