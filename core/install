@@ -13,10 +13,10 @@ function setMasterPassword {
     tmp=$(mktemp)
     echo -n $MASTERPASSWORD > $tmp
     echo $tmp
-    "Already use GPG? (Y/n)"
+    echo "Already use GPG? (Y/n)"
     read -n 1 -s YES_OR_NO
     if [[ $YES_OR_NO != 'n' ]]; then
-        encryptMaterPassword
+        encryptMasterPassword
     else
         installGpgKey
     fi
@@ -24,13 +24,13 @@ function setMasterPassword {
 }
 
 function installGpgKey {
-    encryptMaterPassword
+    echo "Not implemented"
     exit
 }
 
-function encryptMaterPassword {
-    #gpg -o $XDG_CONFIG_HOME/rndy/rndypassword.gpg -e $tmp
-    #rm $tmp
+function encryptMasterPassword {
+    gpg -o $XDG_CONFIG_HOME/rndy/rndypassword.gpg -e $tmp
+    rm $tmp
     exit
 }
 
