@@ -37,29 +37,31 @@ function installGpgKey {
     echo "Generating GPG-key........"
     echo "--------------------------"
     #gpg --gen-key
+
 cat >foo <<EOF
 %echo Generating a standard key
-Key-Type: DSA
+Key-Type: RSA
 Key-Length: 1024
-Subkey-Type: ELG-E
-Subkey-Length: 1024
 Name-Real: $NAME
-Name-Comment: kekeke
+Name-Comment: Key for master password
 Name-Email: $EMAIL
 Expire-Date: 0
 Passphrase: $MASTERPASSWORD
-%pubring foo.pub
-%secring foo.sec
+%pubring pubring.gpg
+%secring secring.gpg
 %commit
 %echo done
 EOF
-gpg --batch --gen-key foo
+
+    gpg --batch --gen-key --yes foo
+    gpg --import foo pubring.gpg secring.gpg
+    rm foo pubring.gpg secring.gpg
 
     encryptMasterPassword
 }
 
 function encryptMasterPassword {
-    gpg -r $EMAIL -o $HOME/.rndy/rndypassword.gpg -e $tmppass
+    gpg --yes -r $EMAIL -o $HOME/.rndy/rndypassword.gpg -e $tmppass
     rm $tmppass
 }
 
