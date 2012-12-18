@@ -47,21 +47,22 @@ Name-Comment: Key for master password
 Name-Email: $EMAIL
 Expire-Date: 0
 Passphrase: $MASTERPASSWORD
-%pubring pubring.gpg
-%secring secring.gpg
+%pubring pubring.pub
+%secring secring.sec
 %commit
 %echo done
 EOF
 
     gpg --batch --gen-key --yes foo
-    gpg --import foo pubring.gpg secring.gpg
-    rm foo pubring.gpg secring.gpg
+    gpg --import pubring.pub
+    gpg --import secring.sec
+    rm foo pubring.pub secring.sec
 
     encryptMasterPassword
 }
 
 function encryptMasterPassword {
-    gpg --yes -r $EMAIL -o $HOME/.rndy/rndypassword.gpg -e $tmppass
+    gpg --trust-model always --yes -r $EMAIL -o $HOME/.rndy/rndypassword.gpg -e $tmppass
     rm $tmppass
 }
 
