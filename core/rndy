@@ -2,7 +2,7 @@
 
 COUNT=8
 RNDY_GPG=false
-INSTALL_SCRIPT="$HOME/reps/rndy/core/install"
+INSTALL_SCRIPT="/usr/share/rndy/install.sh"
 CONFIG="$HOME/.rndy/rndyrc"
 
 HELP=$(cat << 'EOF'
