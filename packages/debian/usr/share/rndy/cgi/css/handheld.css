@@ -1,8 +1,11 @@
 @media handheld,
 screen and (max-width:1024px),
 screen and (max-device-width:1024px) {
-    FORM {
+    .wrapper {
         width: 100%;
+    }
+    FORM,
+    .popup {
         padding: 0;
         margin: 0;
         background-color: transparent;
@@ -26,5 +29,23 @@ screen and (max-device-width:1024px) {
     INPUT[type="url"],
     INPUT[type="submit"] {
         width: 280px;
+    }
+
+    .controls {
+        position: static;
+        width: 100%;
+        margin: 0;
+        text-align: center;
+    }
+
+    .popup {
+        background-color: #FFF;
+        bottom: 0;
+    }
+
+    .popup-close {
+        right: 15px;
+        top: 0;
+        font-size: 32px;
     }
 }
