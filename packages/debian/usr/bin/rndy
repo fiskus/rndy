@@ -76,7 +76,7 @@ if [[ $CONFIG && -f $CONFIG ]]; then
 fi
 
 if [[ $RNDY_GPG == true ]]; then
-    MASTERPASSWORD=`gpg --batch --quiet -d $RNDY_PASSWORD_PATH `
+    MASTERPASSWORD=`gpg --batch --quiet --use-agent -d $RNDY_PASSWORD_PATH`
 fi
 
 if [[ ! $MASTERPASSWORD ]]; then
