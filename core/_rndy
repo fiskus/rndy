@@ -1,8 +1,8 @@
 #compdef rndy
 
 arguments=(
-    '*-u[username]: :_files -W $HOME/rndy/usernames'
-    '*-d[domain]: :_files -W $HOME/rndy/domains'
+    '*-u[username]: :_files -W $HOME/.rndy/usernames'
+    '*-d[domain]: :_files -W $HOME/.rndy/domains'
     '*-c[symbols count]: :(8)'
     '*-p[master password]'
     '*-f[path to config file]'
