@@ -2,7 +2,7 @@
 
 pkgname=rndy-git
 pkgver=20130305
-pkgrel=1
+pkgrel=2
 pkgdesc="Utility for managing passwords"
 arch=('any')
 url="https://github.com/fiskus/rndy"
@@ -39,6 +39,7 @@ build() {
   cp core/rndy ${pkgdir}/usr/bin/
   cp core/rndyrc ${pkgdir}/usr/share/rndy/example/
   cp core/_rndy ${pkgdir}/usr/share/zsh/functions/Completion/Linux/
+  /usr/share/zsh/functions/Completion/Zsh/
   cp core/install.sh ${pkgdir}/usr/share/rndy/
   cp -r cgi/* ${pkgdir}/usr/share/webapps/rndy/
   cp doc/rndy.1.gz ${pkgdir}/usr/share/man/man1/
