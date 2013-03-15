@@ -1,9 +1,7 @@
 #!/bin/bash
 
 COUNT=8
-RNDY_GPG=false
 INSTALL_SCRIPT="/usr/share/rndy/install.sh"
-CONFIG="$HOME/.rndy/rndyrc"
 
 HELP=$(cat << 'EOF'
     Usage:
@@ -15,7 +13,6 @@ HELP=$(cat << 'EOF'
         -c  count of symbols
         -o  output to console instead of clipboard
         -p  master password
-        -f  configuration file
         -h  print this page
 EOF
 )
@@ -42,22 +39,12 @@ while getopts ":d:u:c:p:f:o" opt; do
         o)
             OUTPUT='RAW'
             ;;
-        #set config
-        f)
-            CONFIG=$OPTARG
-            ;;
         \?)
             echo "$HELP"
             exit 0
             ;;
     esac
 done
-
-
-if [[ ! -a $CONFIG ]]; then
-    source $INSTALL_SCRIPT
-fi
-
 
 mkdir -p $HOME/.rndy/domains $HOME/.rndy/usernames
 
@@ -68,15 +55,6 @@ touch $HOME/.rndy/usernames/$USERNAME
 if [[ $DOMAIN == "" ]]; then
     echo "$HELP"
     exit 1
-fi
-
-
-if [[ $CONFIG && -f $CONFIG ]]; then
-    source $CONFIG
-fi
-
-if [[ $RNDY_GPG == true ]]; then
-    MASTERPASSWORD=`gpg --batch --quiet --use-agent -d $RNDY_PASSWORD_PATH`
 fi
 
 if [[ ! $MASTERPASSWORD ]]; then

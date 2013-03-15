@@ -1,3 +1,0 @@
-RNDY_GPG=true
-RNDY_PASSWORD_PATH="$HOME/.rndy/rndypassword.gpg"
-RNDY_EMAIL=test@example.com

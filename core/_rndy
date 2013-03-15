@@ -5,7 +5,6 @@ arguments=(
     '*-d[domain]: :_files -W $HOME/.rndy/domains'
     '*-c[symbols count]: :(8)'
     '*-p[master password]'
-    '*-f[path to config file]'
     '*-o[output to STDOUT instead of clipboard]'
     '*-h[show help]'
 )
