@@ -15,9 +15,8 @@ def index():
         else:
             return render_template('output.html', password=password)
     else:
-        mobile = request.headers.get('User-Agent').find('Mobile') > -1
-        return render_template('rndy.html', mobile=mobile)
-
+        username = request.args.get('username', '')
+        return render_template('rndy.html', username=username)
 
 def getPassword(request):
     masterPassword = request.form['password']
