@@ -62,7 +62,7 @@ Rndy.prototype.close = function() {
 Rndy.prototype.createIframe = function(username) {
     var url = this.url;
     if (username) {
-        url += '/' + username;
+        url += '/?username=' + username;
     }
     var attributes = {
         src: url,
